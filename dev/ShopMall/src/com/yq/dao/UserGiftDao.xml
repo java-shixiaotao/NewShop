@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yq.dao.UserGiftDao">
+    <select id="getgetUserGiftLst" parameterType="java.lang.String" resultType="com.yq.entity.UserGiftBean">
+        SELECT gd.*,tbo.goods_price,tbo.goods_name,tbo.goods_img,tbo.goods_spe,tbo.spe_type from tb_user_gift_detail gd inner join tb_order tbo on gd.source_order_id=tbo.order_id
+        where gd.oppen_id=#{oppen_id} order by update_time asc, status asc
+    </select>
+
+    <select id="getShareLstByOpenID" parameterType="java.lang.String" resultType="com.yq.entity.UserGiftBean">
+        select id as gift_id,IF(share_box_num=0,share_pot_num,share_box_num) goods_num,goods_id,goods_spe,goods_price,goods_name,goods_img,is_exchange,is_validate,share.create_time,share.update_time from tb_share share,tb_order tbo,tb_user_gift_detail gift
+        where share.id=gift.share_id and gift.source_order_id=tbo.order_id
+        and share.oppen_id=#{oppen_id} group by id order by share.update_time desc, is_exchange asc;
+    </select>
+
+    <select id="getUserGiftLstByGift_ids" parameterType="java.util.Map" resultType="com.yq.entity.UserGiftBean">
+        select gd.*,tbo.spe_type
+        from tb_user_gift_detail gd
+        inner join tb_order tbo
+        on gd.source_order_id=tbo.order_id
+        where gift_id in
+        <foreach item="item" index="index" collection="gift_ids" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <update id="updateGiftStatusByGiftIDs" parameterType="java.util.Map">
+        UPDATE tb_user_gift_detail SET status=2,share_id=#{share_id} where gift_id IN
+        <foreach item="item" index="index" collection="gift_ids" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <select id="getUserGiftBeanByShareID" parameterType="java.lang.String" resultType="com.yq.entity.UserGiftBean">
+        SELECT gd.*,goods_id,goods_num,goods_spe, goods_name,goods_img,goods_price,spe_type from tb_user_gift_detail gd
+        inner join tb_order tbo on gd.source_order_id=tbo.order_id
+        where share_id=#{share_id}
+    </select>
+
+
+    <select id="getUserGiftBeanByGiftID" parameterType="java.lang.String" resultType="com.yq.entity.UserGiftBean">
+        SELECT gd.*,goods_id,goods_num,goods_spe, goods_name,goods_img,goods_price,spe_type from tb_user_gift_detail gd
+        inner join tb_order tbo on gd.source_order_id=tbo.order_id
+        where gift_id in
+        <foreach item="item" index="index" collection="gift_ids" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="getViewGiftBeanByGiftID" parameterType="java.lang.String" resultType="com.yq.entity.UserGiftBean">
+        SELECT gift_id,goods_id,goods_num,goods_spe, goods_name,goods_img,goods_price,goods_total,goods_total_num,tgd.createTime,tgd.actionTime
+        from tb_template_gift_detail tgd,tb_template t
+        where tgd.template_id=t.template_id and gift_id=#{gift_id}
+    </select>
+
+    <update id="updateUserGiftStatusByGiftID" parameterType="java.lang.String">
+        UPDATE tb_user_gift_detail SET status=1 where gift_id=#{gift_id}
+    </update>
+
+    <update id="updateShareStatusByShareID" parameterType="java.lang.String">
+        UPDATE tb_share SET is_exchange=1 where id=#{gift_id}
+    </update>
+
+    <update id="updateShareTimeByShareID" parameterType="java.util.Map">
+        UPDATE tb_share SET create_time=#{useTime},update_time=#{useTime} where id=#{gift_id}
+    </update>
+
+    <update id="updateTemplateGiftStatusByGiftID" parameterType="java.lang.String">
+        UPDATE tb_template_gift_detail SET status=1 where gift_id=#{gift_id}
+    </update>
+
+    <update id="updateTemplateGiftTimeByGiftID" parameterType="java.lang.String">
+        UPDATE tb_template_gift_detail SET actionTime=#{useTime}, usingTime=#{useTime} where gift_id=#{gift_id}
+    </update>
+
+    <update id="updateUserGiftTimeByGiftID" parameterType="java.lang.String">
+        UPDATE tb_user_gift_detail SET status=1,use_order_id=#{order_id},update_time=#{useTime}, using_time=#{useTime} where share_id=#{gift_id}
+    </update>
+    <insert id="insertGiftDetail" parameterType="com.yq.entity.UserGiftBean">
+        insert
+        tb_user_gift_detail(gift_id,oppen_id,status,create_time,update_time,source_order_id)
+        values
+        (
+        #{gift_id},#{oppen_id},#{status},#{create_time},#{update_time},#{source_order_id}
+        )
+    </insert>
+
+    <update id="updateUserGiftStatusByMap" parameterType="java.util.Map">
+        UPDATE tb_user_gift_detail
+        SET status=#{status}
+        <if test="share_id !=null">
+            ,share_id=''
+        </if>
+        where
+        <if test="gift_id !=null">
+            gift_id=#{gift_id}
+        </if>
+        <if test="share_id !=null">
+            share_id=#{share_id}
+        </if>
+    </update>
+
+    <update id="updateTemplateGiftStatusByMap" parameterType="java.util.Map">
+        UPDATE tb_template_gift_detail SET status=#{status} where gift_id=#{gift_id}
+    </update>
+
+    <update id="cancelGiftPackage" parameterType="java.lang.String">
+        UPDATE tb_share SET is_validate=0 where id=#{shareID} and is_exchange=0
+    </update>
+
+    <insert id="insertShare" parameterType="com.yq.entity.Share">
+        INSERT tb_share(id,oppen_id,is_validate,is_exchange,share_box_num,share_pot_num,create_time,update_time)
+        VALUES
+        (
+            #{id},#{oppen_id},#{is_validate},#{is_exchange},#{share_box_num},#{share_pot_num},#{create_time},#{update_time}
+        )
+    </insert>
+
+</mapper>

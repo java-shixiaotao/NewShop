@@ -1,0 +1,21 @@
+body{ background: #fff;}
+.title{ padding: 0 2%; height: 44px; line-height: 44px; background: #ffffff; font-size: 16px; color: #ff3c00;}
+.title-left { float: left;padding-top:11px;}
+.title img { width: 20px; height: 20px; }
+.title-right {  float: right;  padding-top:11px;}
+.le{ width:35px; height:44px; line-height:44px; text-align:center; font-size:19px; color:#fff; font-family:"宋体"; position:absolute; top:0; left:0; font-weight:bold;}
+
+.con { /* border-right: 1px solid #ccc; */ position: relative;}
+.con-left { width: 30%; text-align: center;height: 100%;background-color: rgba(171, 179, 178, 0.32)}
+.con-left .food { height: 44px; line-height: 44px; /* background: rgba(171, 179, 178, 0.32); */  /* border-bottom: 1px solid #ABD13E; */ cursor: pointer; position: relative; }
+.con-left .food2 { height: 44px; line-height: 44px; background: #fff;  /* border-bottom: 1px solid #ABD13E; */ cursor: pointer; position: relative;color: #f60}
+.con-right { width: 69%; height: 100%; position: absolute; left: 30%; top: 0; background: #fff; }
+.con-right-con {width: 100%; height: 90px; border-bottom: 1px solid rgba(204, 204, 204, 0.15); border-left: 1px solid rgba(204, 204, 204, 0.15);}
+.right-con-img { width:90px; height: 90px; float: left;}
+.right-con-img img { width:80px; height: 80px; display: block; margin: 5px auto 0;}
+.right-con-p { float: left;  padding:7px;width:58%}
+.right-con-p .p-txt { height: 24px; line-height: 24px; text-align: left; font-size: 16px;white-space:nowrap; text-overflow:ellipsis; overflow:hidden;}
+.right-con-p .p2 { color: #D0CBCB;font-size: 12px;margin-top: -8px}
+.right-con-p .p3{margin-top: 10px}
+.right-con-p .p3 .price-1 { color: #f60;}
+.right-con-p .p3 .price-2 { color: #f60; font-size: 18px;}

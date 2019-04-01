@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yq.dao.CartDao">
+    <insert id="insert" parameterType="java.util.Map">
+	insert tb_cart(goods_id,goods_name,goods_img,goods_price,goods_num,goods_total,oppen_id,goods_spe) 
+	values
+	(
+	#{goods_id},#{goods_name},#{goods_img},#{goods_price},#{goods_num},#{goods_total},#{oppen_id},#{goods_spe}
+	) 
+    </insert>
+    
+    <update id="update" parameterType="java.util.Map">
+    update tb_cart set goods_num=#{goods_num},goods_total=#{goods_total}
+     where goods_id=#{goods_id}  and oppen_id=#{oppen_id}
+    </update>
+    
+    <delete id="delete" parameterType="java.util.Map">
+    delete from  tb_cart  where goods_id=#{goods_id}
+    </delete>
+    
+    <select id="list" resultType="com.yq.entity.Cart">
+    select * from tb_cart where oppen_id=#{oppen_id}
+    </select>
+    
+    <select id="count" resultType="java.lang.Integer">
+    select count(1) from tb_cart where goods_id=#{goods_id} and oppen_id=#{oppen_id}
+    </select>
+    
+    <select id="goodsnum" resultType="java.lang.Integer">
+    select goods_num from tb_cart where goods_id=#{goods_id} and oppen_id=#{oppen_id}
+    </select>
+    
+	<select id="goodstotalprice" resultType="java.lang.Float">
+    select IFNULL(sum(binary(goods_total)),0) from tb_cart where  oppen_id=#{oppen_id}
+    </select>
+    
+    <select id="goodstotalnum" resultType="java.lang.Integer">
+    select IFNULL(sum(goods_num),0) from tb_cart where  oppen_id=#{oppen_id}
+    </select>
+    
+</mapper>

@@ -1,0 +1,38 @@
+@charset "utf-8";
+/* CSS Document */
+.hd_search_b{background:url(../images/sjsc-13.png) no-repeat center center ;  background-size:20px 20px; width:auto; width:35px; height:25px; border:0; border-radius:5px;  }
+.key_from{ margin-left:30px; margin-right:40px;}
+.hd_keyword{ height:23px; border:1px solid #cccccc; border-radius:5px; text-indent:5px; /* line-height:23px; */ width:100%;}
+
+.main{ padding-top:174px;}
+.hotkey_box{ background-color:#f2f2f2; padding:5px 0; border-bottom:1px #ccc solid; position:fixed; width:100%; top:44px; z-index:15000;}
+.hotkey_box .t{ line-height:24px; height:24px;}
+.hotkeys{ text-align:center; margin-top:5px;}
+.hotkeys a{ display:inline-block; padding:0 3%; width:24.5%; margin-left:1%; margin-bottom:8px; background-color:#ff3c00/* background-color:#ABD13E */; height:24px; line-height:24px; border-radius:5px; box-shadow:0px 2px 2px rgba(0,0,0,0.3); color:#fff}
+.btnClearHis { background-color:#fff; border:1px #ccc solid; border-radius:5px; padding:0 8px;}
+
+.my_his_list a{ display:block; height:36px; line-height:36px; padding:0 4%; border-bottom:1px #ccc dotted;}
+
+
+.goods_box{ margin-left:70px;}
+.goods_box .loading{ padding-bottom:44px; line-height:40px; background-color:#F5F5F5; text-align:center;}
+.goods_unit{ position:relative; padding:10px; border-bottom:1px #CCCCCC dotted;}
+.goods_unit .name{ display:block; line-height:18px; height:36px; margin-bottom:4px; overflow:hidden;}
+.goods_unit .img{ margin-right:8px; border:1px solid #ccc; padding:1px; width:75px; height:75px; overflow:hidden;}
+.goods_unit .img img{ height:75px; width:75px;}
+.goods_unit .price,.goods_unit .offline_price{ display:block;}
+.goods_unit .price{ line-height:20px;}
+.goods_unit .offline_price{ font-style:oblique; text-decoration:line-through;}
+.btnPutin{ background-image:url(../images/icon-putin-cart.png); background-size:30px 30px;}
+.btnRemove{ background-image:url(../images/err.png); background-size:20px 20px;}
+.ad{ width:74%; position:fixed; top:44px; right:0; z-index:1000;}
+
+
+
+.sales_vol{font-weight:normal; font-size:9px; color:#999; padding-bottom:4px; padding-right:8px; position:absolute; right:3px; bottom:1px;}
+
+.lsjl{ width:96%; margin:0 auto}
+
+.lsjl li{ height:40px; padding-left:2%; line-height:40px; border-bottom:1px solid #ddd}
+.qc{margin-top:20px; text-align:center; color:#888; font-size:1em}
+.qc a{ color:#888}

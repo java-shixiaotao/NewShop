@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yq.dao.MenuDao">
+    <insert id="insert" parameterType="java.util.Map">
+	insert tb_menu(goods_name,goods_img,goods_spe,goods_price,goods_detail,add_time,status) 
+	values
+	(
+	#{goods_name},#{goods_img},#{goods_spe},#{goods_price},#{goods_detail},#{add_time},#{status}
+	) 
+    </insert>
+    
+    <update id="update" parameterType="java.util.Map">
+    update tb_menu set goods_name=#{goods_name},goods_img=#{goods_img},goods_spe=#{goods_spe},
+    goods_price=#{goods_price},goods_detail=#{goods_detail}
+     where goods_id=#{goods_id}
+    </update>
+    
+    <update id="upstatus" parameterType="java.util.Map">
+    update tb_menu set status=#{status} where goods_id=#{goods_id}
+    </update>
+          
+    <select id="list" resultType="com.yq.entity.Menu">
+    select * from tb_menu where status=#{status} order by add_time desc 
+ 	<if test="pageSize!=null and pageSize!=0">
+     limit #{currentNum},#{pageSize}
+    </if>
+    </select>
+    
+    <select id="count" resultType="int">
+    select count(1) from tb_menu where status=#{status} 
+    </select>
+    
+     <select id="listById" resultType="com.yq.entity.Menu">
+    select * from tb_menu where goods_id=#{goods_id}
+    </select>
+   
+</mapper>

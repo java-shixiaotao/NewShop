@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yq.dao.TemplateGiftDao">
+
+    <select id="tgcount" resultType="int">
+        select count(1) from tb_template_gift
+        <if test="templateName!=null and templateName!=''">
+            where  templateName like CONCAT('%',#{templateName},'%')
+        </if>
+    </select>
+
+    <select id="tglist" resultType="com.yq.entity.TemplateGift">
+        select * from tb_template_gift
+        <if test="templateName!=null and templateName!=''">
+            where  templateName like CONCAT('%',#{templateName},'%')
+        </if>
+        order by actionTime desc
+        <if test="pageSize!=null and pageSize!=0">
+            limit #{currentNum},#{pageSize}
+        </if>
+    </select>
+
+    <select id="tglistById" resultType="com.yq.entity.TemplateGiftDetail">
+        select * from tb_template_gift_detail where tgID=#{tgID}
+    </select>
+
+    <select id="tggiftidlistById" resultType="java.util.HashMap">
+        select t.templateName,t.num,tt.gift_id,tt.itemID from tb_template_gift t,tb_template_gift_detail tt where t.tgID=tt.tgID and t.tgID=#{tgID}
+    </select>
+
+    <insert id="inserttempg" useGeneratedKeys="true" keyProperty="tgID" parameterType="com.yq.entity.TemplateGift">
+
+        insert tb_template_gift(template_id,templateName,num,createTime,actionTime)
+        values
+        (
+        #{template_id},#{templateName},#{num},#{createTime},#{actionTime}
+        )
+    </insert>
+
+    <!-- 批量插入生成的兑换码 -->
+    <insert id ="insertCodeBatch" parameterType="java.util.List" >
+        insert into tb_template_gift_detail
+        (gift_id, template_id, status, createTime,actionTime,tgID)
+        values
+        <foreach collection ="list" item="gtd" index= "index" separator =",">
+            (
+            #{gtd.gift_id}, #{gtd.template_id},
+            #{gtd.status},
+            #{gtd.createTime},
+            #{gtd.actionTime},
+            #{gtd.tgID}
+            )
+        </foreach >
+    </insert >
+</mapper>

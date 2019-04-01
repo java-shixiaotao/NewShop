@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yq.dao.ExpressMapper" >
+ 
+  <sql id="Base_Column_List" >
+    express_id, express_dm,express_name
+  </sql>
+  
+   <select id="select" resultType="com.yq.entity.Express" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_express
+  </select>
+  
+  
+  <select id="selectByPrimaryKey" resultType="com.yq.entity.Express" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_express
+    where express_id = #{express_id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_express
+    where express_id = #{express_id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yq.entity.Express" >
+    insert into tb_express ( express_dm,express_name)
+    values (#{express_dm}, #{express_name})
+  </insert>
+  
+ 
+  <update id="updateByPrimaryKey" parameterType="com.yq.entity.Express" >
+    update tb_express
+    set express_dm = #{express_dm},express_name = #{express_name}
+    where express_id = #{express_id,jdbcType=INTEGER}
+  </update>
+</mapper>

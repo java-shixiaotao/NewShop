@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.weixin.dao.ButtonMapper" >
+  
+  <sql id="Base_Column_List" >
+    id, name, type, value, super_id, add_time,sort,level
+  </sql>
+   <select id="select" resultType="com.weixin.entity.Button">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_button 
+    where 1=1 
+    <if test="level!=0 and level!=null">
+    and level=#{level} 
+    </if>
+    <if test="super_id!=0 and super_id!=null">
+    and super_id=#{super_id} <!-- and type!='main'  -->
+    </if>
+    order by sort
+  </select>
+  
+  <select id="selectCount" resultType="java.lang.Integer">
+    select   count(1)   from tb_button 
+    where 1=1 
+    <if test="level!=0 and level!=null">
+    and level=#{level} 
+    </if>
+    <if test="super_id!=0 and super_id!=null">
+    and super_id=#{super_id} <!-- and type!='main'  -->
+    </if>
+  </select>
+  
+  
+  <select id="selectByPrimaryKey" resultType="com.weixin.entity.Button" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_button
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_button
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.weixin.entity.Button" >
+    <selectKey resultType="java.lang.String" keyProperty="id"  >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into tb_button (id, name, type, 
+      value, super_id, add_time,sort,level
+      )
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{value,jdbcType=VARCHAR}, #{super_id,jdbcType=VARCHAR}, #{add_time,jdbcType=VARCHAR}, #{sort}, #{level}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.weixin.entity.Button" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id"  >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into tb_button
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      id,
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="value != null" >
+        value,
+      </if>
+      <if test="super_id != null" >
+        super_id,
+      </if>
+      <if test="add_time != null" >
+        add_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=VARCHAR},
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null" >
+        #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="super_id != null" >
+        #{super_id,jdbcType=VARCHAR},
+      </if>
+      <if test="add_time != null" >
+        #{add_time,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.weixin.entity.Button" >
+    update tb_button
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null" >
+        value = #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="super_id != null" >
+        super_id = #{super_id,jdbcType=VARCHAR},
+      </if>
+      <if test="add_time != null" >
+        add_time = #{add_time,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.weixin.entity.Button" >
+    update tb_button
+    set name = #{name,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      value = #{value,jdbcType=VARCHAR},
+      super_id = #{super_id,jdbcType=VARCHAR},
+      add_time = #{add_time,jdbcType=VARCHAR},
+     sort =  #{sort}, level = #{level}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <update id="sort" parameterType="com.weixin.entity.Button" >
+    update tb_button
+    set  sort =  #{sort}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

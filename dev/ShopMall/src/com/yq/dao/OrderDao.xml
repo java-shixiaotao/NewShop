@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yq.dao.OrderDao">
+	<insert id="insert" useGeneratedKeys="true" keyProperty="order_id"
+		parameterType="com.yq.entity.Order">
+		insert tb_order(order_id,goods_id,goods_name,goods_img,spe_type,goods_spe,goods_price,goods_num,goods_total,
+		addr_name,oppen_id,add_time,status,note,order_type,update_time,member_id)
+		values
+		(
+		#{order_id},#{goods_id},#{goods_name},#{goods_img},#{spe_type},#{goods_spe},#{goods_price},#{goods_num},#{goods_total},
+		#{addr_name},#{oppen_id},#{add_time},#{status},#{note},#{order_type},#{update_time},#{member_id}
+		)
+	</insert>
+
+	<update id="upstatus" parameterType="java.util.Map">
+		update tb_order set
+		status=#{status} 
+		<if test="express_dm !=null"> ,express_dm=#{express_dm}</if>
+
+		<if test="express_dm !=null"> ,express_name=#{express_name}</if>
+
+		<if test="express_dm !=null"> ,express_hm=#{express_hm}</if>
+		where order_id=#{order_id}
+	</update>
+	
+	<update id="upprice" parameterType="java.util.Map">
+		update tb_order set
+		goods_total=#{goods_total},order_id=#{reorder_id} where order_id=#{order_id}
+	</update>
+	<delete id="delete" parameterType="java.util.Map">
+		delete from tb_order where
+		order_id=#{order_id}
+	</delete>
+
+	<select id="list" resultType="com.yq.entity.Order" flushCache="true" useCache="false">
+		select * from tb_order t1 left join tb_user t2 on
+		t1.oppen_id=t2.oppen_id where 1=1
+		<if test="start_time!=null and start_time!='' and end_time!=null and end_time!=''">
+			and t1.add_time between #{start_time} and #{end_time}
+		</if>
+		<!-- 按产品名字查询订单 -->
+		<if test="goods_name!=null and goods_name!=''">
+			and t1.goods_name like CONCAT('%',#{goods_name},'%') 
+		</if>
+		<!-- 按客户名字查询订单（根据收货地址） -->
+		<if test="addr_name!=null and addr_name!=''">
+			and t1.addr_name like CONCAT('%',#{addr_name},'%') 
+		</if>
+		<if test="oppen_id!=null and oppen_id!=''">
+			and t1.oppen_id=#{oppen_id}
+		</if>
+		<if test="status!=null and status!=-2">
+			and t1.status=#{status}
+		</if>
+		order by t1.add_time desc
+		<if test="pageSize!=null and pageSize!=0">
+			limit #{currentNum},#{pageSize}
+		</if>
+	</select>
+
+
+	<select id="listById" resultType="com.yq.entity.Order">
+		select * from tb_order where
+		order_id=#{order_id}
+	</select>
+
+	<select id="listJson" resultType="com.yq.entity.Order">
+		select addr_name,goods_name,goods_num,goods_price,note,add_time from tb_order where note is not null  and status=3
+		<if test="pageSize!=null and pageSize!=0">
+			limit #{currentNum},#{pageSize}
+		</if>
+	</select>
+
+	<select id="count" resultType="int">
+		select  count(1) from tb_order t1 left join tb_user t2 on
+		t1.oppen_id=t2.oppen_id where 1=1
+		<!-- 按日期查询订单 -->
+		<if test="start_time!=null and start_time!='' and end_time!=null and end_time!=''">
+			and t1.add_time between #{start_time} and #{end_time}
+		</if>
+		<!-- 按产品名字查询订单 -->
+		<if test="goods_name!=null and goods_name!=''">
+			and t1.goods_name like CONCAT('%',#{goods_name},'%') 
+		</if>
+		<!-- 按客户名字查询订单（根据收货地址） -->
+		<if test="addr_name!=null and addr_name!=''">
+			and t1.addr_name like CONCAT('%',#{addr_name},'%') 
+		</if>
+
+
+		<if test="oppen_id!=null and oppen_id!=''">
+			and t1.oppen_id=#{oppen_id}
+		</if>
+		
+		<if test="status!=null and status!=-2">
+			and t1.status=#{status}
+		</if>
+	</select>
+
+	<select id="listJsonCount" resultType="int">
+		select count(1) from tb_order  where note is not null  and status=3
+	</select>
+
+	<update id="updateOrderStatusByOrderID" parameterType="java.util.Map">
+		update tb_order set
+		status=#{status},update_time=#{update_time}
+		where order_id=#{order_id}
+	</update>
+
+	<update id="updateInventoryStatusByID" parameterType="com.yq.entity.Inventory">
+		update tb_inventory set status=1,update_time=#{update_time},use_order_id=#{use_order_id}
+		where id=#{id}
+	</update>
+
+	<update id="updateOrderStatusAndOrderTypeByOrderID" parameterType="java.util.Map">
+		update tb_order set status=#{status},order_type=#{order_type},member_id=0,update_time=#{update_time}
+		where order_id=#{order_id}
+	</update>
+
+	<update id="updateInvertory_box_Number" parameterType="com.yq.entity.Order">
+		update tb_membership set inventory_box_num=inventory_box_num-#{goods_num}
+		where user_id=#{member_id}
+	</update>
+
+	<update id="updateInvertory_guan_Number" parameterType="com.yq.entity.Order">
+		update tb_membership set inventory_guan_num=inventory_guan_num-#{goods_num}
+		where user_id=#{member_id}
+	</update>
+
+	<select id="getOrderByOrderID" resultType="com.yq.entity.Order" parameterType="java.lang.String">
+		select * from tb_order  where order_id=#{order_id}
+	</select>
+
+	<select id="selectYearTotalMoney" resultType="double" parameterType="java.util.Map">
+		select sum(goods_total) from tb_order  where oppen_id=#{oppen_id} and add_time <![CDATA[ >= ]]> #{beginDate} AND add_time <![CDATA[ <= ]]>#{endDate}
+	</select>
+
+	<select id="selectInventoryByMemberID" resultType="com.yq.entity.Inventory" parameterType="com.yq.entity.Order">
+		select * from tb_inventory  where member_id=#{member_id} and status=0 and spe_type=#{spe_type}
+	</select>
+
+	<select id="selectInventoryNumberByMemberID" resultType="com.yq.entity.Membership" parameterType="com.yq.entity.Order">
+		select * from tb_membership  where user_id=#{member_id}  for UPDATE
+	</select>
+
+</mapper>

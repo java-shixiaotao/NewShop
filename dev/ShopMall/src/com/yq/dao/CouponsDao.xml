@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yq.dao.CouponsDao">
+    <insert id="insert" parameterType="java.util.Map">
+	insert tb_coupons(cps_name,cps_code,cps_price,cps_time,cps_level,oppen_id,status) 
+	values(#{cps_name},#{cps_code},#{cps_price},#{cps_time},#{cps_level},#{oppen_id},#{status}) 
+    </insert>
+    
+    <update id="update" parameterType="java.util.Map">
+    update tb_coupons set cps_name=#{cps_name},
+    cps_price=#{cps_price},cps_time=#{cps_time} where cps_id=#{cps_id}
+    </update>
+    
+    <update id="upstatus" parameterType="java.util.Map">
+    update tb_coupons set status=#{status} where cps_id=#{cps_id}
+    </update>
+    
+    <delete id="delete" parameterType="java.util.Map">
+    delete  from tb_coupons  where cps_id=#{cps_id}
+    </delete>
+    
+    <select id="list" resultType="com.yq.entity.Coupons">
+    select * from tb_coupons  
+   	where  1=1 and status=1
+   	and cps_time >= #{cps_time} 
+   	 <if test="cps_level==0">
+     and cps_level=#{cps_level}
+    </if>
+    
+   	<if test="oppen_id!=null and oppen_id!=''">
+    	and oppen_id=#{oppen_id}
+    </if>
+   	 order by cps_id desc  
+    <if test="pageSize!=null and pageSize!=0">
+     limit #{currentNum},#{pageSize}
+    </if>
+    </select>
+    
+    <select id="listAll" resultType="com.yq.entity.Coupons">
+    select * from tb_coupons  
+   	where  1=1 and status=1 and cps_time >= #{cps_time}  and cps_level=#{cps_level}
+    and cps_time >= #{cps_time} 
+   	order by cps_id desc  
+  
+    </select>
+    
+    <select id="count" resultType="int">
+    select count(1) from tb_coupons where  cps_time >= #{cps_time}  and status=1
+   	 <if test="cps_level==0">
+     and cps_level=#{cps_level}
+    </if>
+    
+   	<if test="oppen_id!=null and oppen_id!=''">
+    	and oppen_id=#{oppen_id}
+    </if>
+    </select>
+    
+    <select id="listByCode" resultType="com.yq.entity.Coupons">
+    select * from tb_coupons where  
+     cps_time >= #{cps_time} and cps_level=#{cps_level} and oppen_id=#{oppen_id}
+    <if test="cps_level==0">
+     and cps_id=#{cps_id}
+    </if>
+    limit 1
+    </select>
+    
+    <select id="listById" resultType="com.yq.entity.Coupons">
+    select * from tb_coupons where cps_id=#{cps_id}
+    </select>
+    
+</mapper>
