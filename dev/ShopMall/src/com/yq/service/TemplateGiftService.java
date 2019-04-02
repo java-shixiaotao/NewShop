@@ -1,13 +1,5 @@
 package com.yq.service;
 
-import java.io.*;
-import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
-
 import com.yq.dao.TemplateGiftDao;
 import com.yq.entity.TemplateGift;
 import com.yq.entity.TemplateGiftDetail;
@@ -27,6 +19,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Transactional
 @Service
@@ -46,78 +44,79 @@ public class TemplateGiftService {
         List<TemplateGiftDetail> list = templategiftDao.tglistById(templateg);
         return list;
     }
+
     public ResponseEntity<byte[]> download(TemplateGiftDetail templateg, HttpServletRequest request,
-                         HttpServletResponse response) throws Exception {
+            HttpServletResponse response) throws Exception {
         ImageAndQRcode add = new ImageAndQRcode();
         List<Map<String, Object>> list = templategiftDao.tggiftidlistById(templateg);
         String dirPath = request.getSession().getServletContext().getRealPath("/");
-         if(list!=null&&list.size()>0) {
-             String filename=list.get(0).get("TEMPLATENAME").toString();
-             //生成二维码路径
-             String erWeiMaPath = dirPath+list.get(0).get("TEMPLATENAME").toString()+"二维码";
-             //生成合成png路径
-             String heChengPNGPath = dirPath+list.get(0).get("TEMPLATENAME").toString()+"合成PNG";
-             //合成pdf路径
-             String heChengPDFPath = dirPath+list.get(0).get("TEMPLATENAME").toString();
-             //生成zip包路径
-             String zipPath=dirPath+list.get(0).get("TEMPLATENAME").toString()+".zip";
+        if (list != null && list.size() > 0) {
+            String filename = list.get(0).get("TEMPLATENAME").toString();
+            //生成二维码路径
+            String erWeiMaPath = dirPath + list.get(0).get("TEMPLATENAME").toString() + "二维码";
+            //生成合成png路径
+            String heChengPNGPath = dirPath + list.get(0).get("TEMPLATENAME").toString() + "合成PNG";
+            //合成pdf路径
+            String heChengPDFPath = dirPath + list.get(0).get("TEMPLATENAME").toString();
+            //生成zip包路径
+            String zipPath = dirPath + list.get(0).get("TEMPLATENAME").toString() + ".zip";
 
-             File erWeiMaFile = new File(erWeiMaPath);
-             File heChengPNGFile = new File(heChengPNGPath);
-             heChengPNGFile.mkdir();
-             File heChengPDFFile = new File(heChengPDFPath);
-             heChengPDFFile.mkdir();
-             File zFile = new File(zipPath);
-             if (zFile.exists()) {
-                 zFile.delete();
-             }
-             for (int i = 0; i < list.size(); i++) {
-                 String itemstr = "\\" + list.get(i).get("ITEMID").toString() + ".png";
-                 QRCodeUtil.generateQRCode(list.get(i).get("GIFT_ID").toString(), 95, 95, "png", erWeiMaPath, erWeiMaPath + itemstr);
-                 add.addImageQRcode(list.get(i).get("GIFT_ID").toString(), 95, 95, "png",
-                         dirPath+"\\image\\model.png",
-                         erWeiMaPath + itemstr,
-                         heChengPNGPath+itemstr,
-                         580, 200);
-             }
-             final List<String> itemLst
-                     = list.stream().map(one -> heChengPNGFile + "\\" + one.get("ITEMID") + ".png").collect(Collectors.toList());
-             PDFUtil.createPDF(itemLst,heChengPDFPath,filename);
-             CompressedFileUtil compressedFileUtil = new CompressedFileUtil();
-             compressedFileUtil.compressedFile(heChengPDFPath, dirPath);
+            File erWeiMaFile = new File(erWeiMaPath);
+            File heChengPNGFile = new File(heChengPNGPath);
+            heChengPNGFile.mkdir();
+            File heChengPDFFile = new File(heChengPDFPath);
+            heChengPDFFile.mkdir();
+            File zFile = new File(zipPath);
+            if (zFile.exists()) {
+                zFile.delete();
+            }
+            for (int i = 0; i < list.size(); i++) {
+                String itemstr = "\\" + list.get(i).get("ITEMID").toString() + ".png";
+                QRCodeUtil.generateQRCode(list.get(i).get("GIFT_ID").toString(), 95, 95, "png", erWeiMaPath, erWeiMaPath + itemstr);
+                add.addImageQRcode(list.get(i).get("GIFT_ID").toString(), 95, 95, "png",
+                        dirPath + "\\image\\model.png",
+                        erWeiMaPath + itemstr,
+                        heChengPNGPath + itemstr,
+                        580, 200);
+            }
+            final List<String> itemLst
+                    = list.stream().map(one -> heChengPNGFile + "\\" + one.get("ITEMID") + ".png").collect(Collectors.toList());
+            PDFUtil.createPDF(itemLst, heChengPDFPath, filename);
+            CompressedFileUtil compressedFileUtil = new CompressedFileUtil();
+            compressedFileUtil.compressedFile(heChengPDFPath, dirPath);
 
-             // 判断是否为文件
-             if (erWeiMaFile.isFile()) {
-                 deleteFile(erWeiMaPath);
-             } else {
-                 deleteDirectory(erWeiMaPath);
-             }
+            // 判断是否为文件
+            if (erWeiMaFile.isFile()) {
+                deleteFile(erWeiMaPath);
+            } else {
+                deleteDirectory(erWeiMaPath);
+            }
 
-             // 判断是否为文件
-             if (heChengPNGFile.isFile()) {
-                 deleteFile(heChengPNGPath);
-             } else {
-                 deleteDirectory(heChengPNGPath);
-             }
-             // 判断是否为文件
-             if (heChengPDFFile.isFile()) {
-                 deleteFile(heChengPDFPath);
-             } else {
-                 deleteDirectory(heChengPDFPath);
-             }
+            // 判断是否为文件
+            if (heChengPNGFile.isFile()) {
+                deleteFile(heChengPNGPath);
+            } else {
+                deleteDirectory(heChengPNGPath);
+            }
+            // 判断是否为文件
+            if (heChengPDFFile.isFile()) {
+                deleteFile(heChengPDFPath);
+            } else {
+                deleteDirectory(heChengPDFPath);
+            }
 
-             try {
-                 String new_filename = URLEncoder.encode(filename, "UTF8");
-                 HttpHeaders headers = new HttpHeaders();
-                 headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
-                 headers.setContentDispositionFormData("attachment;filename=", new_filename+ ".zip");
-                 return new ResponseEntity<byte[]>(FileUtils.readFileToByteArray(new File(zipPath)),
-                         headers, HttpStatus.OK);
-             } catch (Exception e) {
-                 e.printStackTrace();
-             }
-         }
-         return null;
+            try {
+                String new_filename = URLEncoder.encode(filename, "UTF8");
+                HttpHeaders headers = new HttpHeaders();
+                headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+                headers.setContentDispositionFormData("attachment;filename=", new_filename + ".zip");
+                return new ResponseEntity<byte[]>(FileUtils.readFileToByteArray(new File(zipPath)),
+                        headers, HttpStatus.OK);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
     }
 //    public ResponseEntity<byte[]> download(TemplateGiftDetail templateg, HttpServletRequest request,
 //                         HttpServletResponse response) throws Exception {
@@ -205,7 +204,8 @@ public class TemplateGiftService {
 
     /**
      * 删除单个文件
-     * @param   sPath 被删除文件path
+     *
+     * @param sPath 被删除文件path
      * @return 删除成功返回true，否则返回false
      */
     public boolean deleteFile(String sPath) {
@@ -218,10 +218,12 @@ public class TemplateGiftService {
         }
         return flag;
     }
+
     /**
      * 删除目录以及目录下的文件
-     * @param   sPath 被删除目录的路径
-     * @return  目录删除成功返回true，否则返回false
+     *
+     * @param sPath 被删除目录的路径
+     * @return 目录删除成功返回true，否则返回false
      */
     public boolean deleteDirectory(String sPath) {
         //如果sPath不以文件分隔符结尾，自动添加文件分隔符
