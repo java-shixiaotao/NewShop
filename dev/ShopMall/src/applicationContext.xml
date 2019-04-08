@@ -19,9 +19,9 @@
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
           destroy-method="close"
           p:driverClassName="com.mysql.jdbc.Driver"
-          p:url="jdbc:mysql://192.168.2.149:3306/shyishop?useAffectedRows=true"
+          p:url="jdbc:mysql://localhost:3306/shyishop?useAffectedRows=true&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=UTC"
           p:username="root"
-          p:password="root">
+          p:password="123456">
         <property name="validationQuery" value="SELECT 1"/>
         <property name="testOnBorrow" value="true"/>
     </bean>
