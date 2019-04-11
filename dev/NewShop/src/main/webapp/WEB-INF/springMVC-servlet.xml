@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+    <!-- 扫描web包，应用Spring的注解 -->
+    <context:component-scan base-package="com.*.controller"/>
+
+    <bean id="mappingJacksonHttpMessageConverter"
+          class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+        <property name="supportedMediaTypes">
+            <list>
+                <value>text/json;charset=UTF-8</value>
+            </list>
+        </property>
+    </bean>
+    <mvc:annotation-driven content-negotiation-manager="contentNegotiationManager"/>
+    <!-- 以.html为后缀名访问，默认返回数据类型是 text/html， 所以要修改返回的数据类型 -->
+    <bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+        <property name="mediaTypes">
+            <map>
+                <entry key="html" value="application/json;charset=UTF-8"/>
+            </map>
+        </property>
+    </bean>
+    <!-- 配置视图解析器，将ModelAndView及字符串解析为具体的页面 -->
+    <bean
+            class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+            p:viewClass="org.springframework.web.servlet.view.JstlView" p:prefix="/"
+            p:suffix=".jsp"/>
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+    <mvc:resources mapping="/upload/**" location="/upload/"/>
+<!--    <mvc:resources mapping="/MP_verify_3mdxZwiJ0l324FLl.txt" location="/MP_verify_3mdxZwiJ0l324FLl.txt"/>-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/index.jsp"/>
+            <mvc:exclude-mapping path="/contact.jsp"/>
+            <mvc:exclude-mapping path="/about.jsp"/>
+            <bean id="loginInterceptor" class="com.yq.util.LoginInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+    <!-- 返回中文数据配置 -->
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>text/html;charset=UTF-8</value>
+                        <value>application/json;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+</beans>
