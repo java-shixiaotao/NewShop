@@ -90,20 +90,22 @@
             <div class="col-md-9">
                 <!-- 五常大米生产基地实拍 -->
                 <div class="videoText">五常脉米生产基地实拍</div>
-                <div class="m">
-                    <video id="my-video" class="video-js" controls preload="auto" style="width:100%;height: 100%;"
-                           poster="res/video/video.png" data-setup="{}">
-                        <source src="res/video/A.Bite.Of.China.II.03.mp4" type="video/mp4">
-                        <p class="vjs-no-js"> To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a> </p>
-                    </video>
-                </div>
-                <div class="m">
-                    <video id="my-video2" class="video-js" controls preload="auto" style="width:100%;height: 100%;"
-                           poster="res/video/video2.jpg" data-setup="{}">
-                        <source src="res/video/20190218video2.mov" type="video/mp4">
-                        <p class="vjs-no-js"> To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a> </p>
-                    </video>
-                </div>
+                <%--播放视频占用流量--%>
+               <%----%>
+                <%--<div class="m">--%>
+                    <%--<video id="my-video" class="video-js" controls preload="auto" style="width:100%;height: 100%;"--%>
+                           <%--poster="res/video/video.png" data-setup="{}">--%>
+                        <%--<source src="res/video/A.Bite.Of.China.II.03.mp4" type="video/mp4">--%>
+                        <%--<p class="vjs-no-js"> To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a> </p>--%>
+                    <%--</video>--%>
+                <%--</div>--%>
+                <%--<div class="m">--%>
+                    <%--<video id="my-video2" class="video-js" controls preload="auto" style="width:100%;height: 100%;"--%>
+                           <%--poster="res/video/video2.jpg" data-setup="{}">--%>
+                        <%--<source src="res/video/20190218video2.mov" type="video/mp4">--%>
+                        <%--<p class="vjs-no-js"> To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a> </p>--%>
+                    <%--</video>--%>
+                <%--</div>--%>
                     <script src="res/js/video.min.js"></script>
                     <script type="text/javascript">
                         //设置中文

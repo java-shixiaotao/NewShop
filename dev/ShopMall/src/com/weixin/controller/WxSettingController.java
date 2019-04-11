@@ -15,6 +15,11 @@ import com.weixin.entity.Button;
 import com.weixin.entity.WxSetting;
 import com.weixin.service.WxSettingService;
 
+/**
+ * 后台配置微信的appid，appsecret和微信支付相关数据的controller
+ *
+ */
+
 @Controller
 @RequestMapping
 public class WxSettingController {
