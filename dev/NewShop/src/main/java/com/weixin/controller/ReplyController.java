@@ -111,7 +111,7 @@ public class ReplyController {
      * @throws IOException
      */
 
-    @RequestMapping(value = "checktoken.html", method = RequestMethod.GET)
+    @RequestMapping(value = "checktoken", method = RequestMethod.GET)
     public void checkToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
         log.info("《《《《开始Token验证》》》》");
         // 微信加密签名

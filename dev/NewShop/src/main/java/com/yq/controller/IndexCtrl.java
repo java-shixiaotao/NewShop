@@ -19,7 +19,7 @@ public class IndexCtrl extends StringUtil{
 	@Autowired
 	private UserService userService;
 
-	@RequestMapping(value="/main/main.html")
+	@RequestMapping(value="/main/maintest")
 	public ModelAndView mainindex(){
 		return new ModelAndView("main/index");
 	}
