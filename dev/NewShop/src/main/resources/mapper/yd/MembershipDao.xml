@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yq.dao.MembershipDao">
+    <insert id="insert" parameterType="java.util.Map">
+	insert tb_membership(oppen_id,username,realname,password,head_img,add_time,status,idcardno,birthday,addr_name,phone,email,level,addr_id,referee)
+	values
+	(
+	#{oppen_id},#{username},#{realname},#{password},#{head_img},#{add_time},#{status},#{idcardno},#{birthday},#{addr_name},#{phone},#{email},#{level},#{addr_id},#{referee}
+	) 
+    </insert>
+    
+    <update id="update" parameterType="java.util.Map">
+    update tb_membership set
+    username=#{username},
+    birthday=#{birthday},
+    addr_name=#{addr_name},
+    idcardno=#{idcardno},
+    phone=#{phone},
+    addr_id=#{addr_id},
+    email=#{email},
+    referee=#{referee}
+    where oppen_id=#{oppen_id}
+    </update>
+    <update id="updateWxbf" parameterType="java.util.Map">
+    update tb_membership set
+    head_img=#{head_img},
+    realname=#{realname}
+    where oppen_id=#{oppen_id}
+    </update>
+    <update id="uparea" parameterType="java.util.Map">
+    update tb_membership set area_id=#{area_id},area_name=#{area_name} where oppen_id=#{oppen_id}
+    </update>
+    
+    <update id="upstatus" parameterType="java.util.Map">
+    update tb_membership set status=#{status} where oppen_id=#{oppen_id}
+    </update>
+    
+    <select id="list" resultType="com.yq.entity.Membership">
+    select * from tb_membership where 1=1
+    <if test="realname!=null and realname!=''">
+     and realname like concat('%',#{realname},'%') 
+    </if>
+    order by add_time desc limit #{currentNum},#{pageSize}
+    </select>
+    
+    <select id="count" resultType="int">
+    select count(1) from tb_membership where 1=1
+    <if test="realname!=null and realname!=''">
+     and realname=#{realname}
+    </if>
+    </select>
+    
+    <select id="listByIdForMemberShip" resultType="com.yq.entity.Membership">
+    select * from tb_membership where oppen_id=#{oppen_id} and 1 =1
+    </select>
+   
+    <select id="isMember" resultType="int">
+    select count(1) from tb_membership where oppen_id=#{oppen_id}
+    </select>
+    <select id="listByReferee" resultType="com.yq.entity.Membership">
+        select * from tb_membership where user_id=#{referee}
+    </select>
+	<select id="selectMemberByOppenid" resultType="com.yq.entity.Membership">
+        select * from tb_membership where oppen_id=#{oppen_id}
+    </select>
+
+    <select id="getMemberLevelList" resultType="com.yq.entity.MemberLevel">
+        select * from tb_level ORDER  BY  level_id
+    </select>
+
+    <update id="updateMemberLevel" parameterType="com.yq.entity.Membership">
+        UPDATE tb_membership SET level=#{level} WHERE oppen_id=#{oppen_id}
+    </update>
+
+    <select id="selectUserIDByOppenID" resultType="java.lang.Long">
+        select user_id from tb_membership where oppen_id=#{oppen_id}
+    </select>
+    <select id="selectRefereeByOppenID" resultType="java.lang.Long">
+        select referee from tb_membership where user_id=#{user_id}
+    </select>
+
+    <select id="selectMemberIDByCode" resultType="java.lang.Long">
+        select user_id from tb_membership where member_code=#{member_code}
+    </select>
+
+    <insert id="insertAwardDetail" parameterType="java.util.Map">
+        insert tb_award(order_id,user_id,money)
+        values (#{orderID},#{userID},#{money})
+    </insert>
+
+    <update id="updateMemBalance" parameterType="com.yq.entity.Membership">
+        UPDATE tb_membership SET balance=IFNULL(balance,0)+#{money} WHERE user_id=#{userID}
+    </update>
+
+    <insert id="insertIntegralDetail" parameterType="java.util.Map">
+        insert tb_integral(user_id,type_id,int_val)
+        values (#{userID},#{type_id},#{integral})
+    </insert>
+
+    <update id="updateIntegral" parameterType="com.yq.entity.Membership">
+        UPDATE tb_membership SET integral=IFNULL(integral,0)+#{integral} WHERE user_id=#{userID}
+    </update>
+</mapper>

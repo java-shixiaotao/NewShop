@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yq.dao.FreightDao">
+    <insert id="insert" parameterType="java.util.Map">
+	insert tb_freight(fgt_price,fgt_price) 
+	values
+	(#{fgt_price},#{fgt_price}) 
+    </insert>
+    
+    <update id="update" parameterType="java.util.Map">
+    update tb_freight set fgt_price=#{fgt_price},free_price=#{free_price} where fgt_id=#{fgt_id}
+    </update>
+
+    
+    <select id="list" resultType="com.yq.entity.Freight">
+    select * from tb_freight limit 1
+    </select>
+
+    
+    
+</mapper>

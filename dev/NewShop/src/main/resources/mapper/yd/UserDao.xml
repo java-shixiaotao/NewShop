@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yq.dao.UserDao">
+    <insert id="insert" parameterType="java.util.Map">
+	insert tb_user(oppen_id,username,realname,password,head_img,add_time,status) 
+	values
+	(
+	#{oppen_id},#{username},#{realname},#{password},#{head_img},#{add_time},#{status}
+	) 
+    </insert>
+    
+    <update id="update" parameterType="java.util.Map">
+    update tb_user set
+    realname=#{realname},
+    head_img=#{head_img}
+    where oppen_id=#{oppen_id}
+    </update>
+    
+    <update id="uparea" parameterType="java.util.Map">
+    update tb_user set area_id=#{area_id},area_name=#{area_name} where oppen_id=#{oppen_id}
+    </update>
+    
+    <update id="upstatus" parameterType="java.util.Map">
+    update tb_user set status=#{status} where oppen_id=#{oppen_id}
+    </update>
+    
+    <update id="upmbertime" parameterType="java.util.Map">
+    update tb_user set member_time=#{member_time} where oppen_id=#{oppen_id}
+    </update>  
+          
+    <select id="list" resultType="com.yq.entity.User">
+    select * from tb_user where 1=1
+    <if test="realname!=null and realname!=''">
+     and realname like concat('%',#{realname},'%') 
+    </if>
+    order by add_time desc limit #{currentNum},#{pageSize}
+    </select>
+    
+    <select id="count" resultType="int">
+    select count(1) from tb_user where 1=1
+    <if test="realname!=null and realname!=''">
+     and realname=#{realname}
+    </if>
+    </select>
+    
+    <select id="listById" resultType="com.yq.entity.User">
+    select * from tb_user where oppen_id=#{oppen_id}
+    </select>
+   
+    <select id="isMember" resultType="int">
+    select count(1) from tb_user where oppen_id=#{oppen_id} and member_time>#{member_time}
+    </select>
+
+    <select id="selectMemberByMemberCode" resultType="com.yq.entity.Membership">
+        select * from tb_membership where member_code=#{member_code}
+    </select>
+
+    <update id="updateMemberCodeByOppenID" parameterType="java.util.Map">
+        UPDATE tb_user SET member_code=#{member_code} where oppen_id=#{oppen_id}
+    </update>
+</mapper>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.weixin.dao.ClickTextMapper" >
+ 
+  <sql id="Base_Column_List" >
+    ct_key, type, content,title, intro, pic_url, url
+  </sql>
+  
+  <select id="select" resultType="com.weixin.entity.ClickText">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_click_text
+   
+  </select>
+  
+  
+  <select id="selectByPrimaryKey" resultType="com.weixin.entity.ClickText" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_click_text
+    where ct_key = #{ct_key,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_click_text
+    where ct_key = #{key,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.weixin.entity.ClickText" >
+    <selectKey resultType="java.lang.String" keyProperty="ct_key"  >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into tb_click_text (ct_key, type, content, title,
+      intro, pic_url, url
+      )
+    values (#{ct_key,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR},
+      #{intro,jdbcType=VARCHAR}, #{pic_url,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.weixin.entity.ClickText" >
+    <selectKey resultType="java.lang.String" keyProperty="ct_key">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into tb_click_text
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      ct_key,
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="intro != null" >
+        intro,
+      </if>
+      <if test="pic_url != null" >
+        pic_url,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{ct_key,jdbcType=VARCHAR},
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="intro != null" >
+        #{intro,jdbcType=VARCHAR},
+      </if>
+      <if test="pic_url != null" >
+        #{pic_url,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.weixin.entity.ClickText" >
+    update tb_click_text
+    <set >
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+        <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="intro != null" >
+        intro = #{intro,jdbcType=VARCHAR},
+      </if>
+      <if test="pic_url != null" >
+        pic_url = #{pic_url,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ct_key = #{ct_key,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.weixin.entity.ClickText" >
+    update tb_click_text
+    set type = #{type,jdbcType=INTEGER},
+      content = #{content,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      intro = #{intro,jdbcType=VARCHAR},
+      pic_url = #{pic_url,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR}
+    where ct_key = #{ct_key,jdbcType=VARCHAR}
+  </update>
+</mapper>

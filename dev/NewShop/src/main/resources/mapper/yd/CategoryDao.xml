@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yq.dao.CategoryDao">
+    <insert id="insert" parameterType="java.util.Map">
+	insert tb_category(ctg_name,ctg_img,status,sort) values(#{ctg_name},#{ctg_img},#{status},#{sort}) 
+    </insert>
+    
+    <update id="update" parameterType="java.util.Map">
+    update tb_category set ctg_name=#{ctg_name}, ctg_img=#{ctg_img} where ctg_id=#{ctg_id}
+    </update>
+    
+    <update id="upstatus" parameterType="java.util.Map">
+    update tb_category set status=#{status} where ctg_id=#{ctg_id}
+    </update>
+    
+    <update id="sort" parameterType="java.util.Map">
+    update tb_category set sort=#{sort} where ctg_id=#{ctg_id}
+    </update>
+    
+    <select id="list" resultType="com.yq.entity.Category">
+    select * from tb_category where status=#{status}  order by sort
+    </select>
+    
+     <select id="listById" resultType="com.yq.entity.Category">
+    select * from tb_category where ctg_id=#{ctg_id}
+    </select>
+    
+    
+    
+</mapper>

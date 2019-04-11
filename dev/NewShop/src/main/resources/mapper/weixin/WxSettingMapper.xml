@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.weixin.dao.WxSettingMapper" >
+
+  <sql id="Base_Column_List" >
+    id, appid, appsecret, partner, partnerkey,link
+  </sql>
+  <select id="selectByPrimaryKey" resultType="com.weixin.entity.WxSetting" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_wx_setting
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_wx_setting
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.weixin.entity.WxSetting" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id"  >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into tb_wx_setting (id, appid, appsecret, 
+      partner, partnerkey,link)
+    values (#{id,jdbcType=INTEGER}, #{appid,jdbcType=VARCHAR}, #{appsecret,jdbcType=VARCHAR}, 
+      #{partner,jdbcType=VARCHAR}, #{partnerkey,jdbcType=VARCHAR}, #{link,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.weixin.entity.WxSetting" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id"  >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into tb_wx_setting
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      id,
+      <if test="appid != null" >
+        appid,
+      </if>
+      <if test="appsecret != null" >
+        appsecret,
+      </if>
+      <if test="partner != null" >
+        partner,
+      </if>
+      <if test="partnerkey != null" >
+        partnerkey,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=INTEGER},
+      <if test="appid != null" >
+        #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="appsecret != null" >
+        #{appsecret,jdbcType=VARCHAR},
+      </if>
+      <if test="partner != null" >
+        #{partner,jdbcType=VARCHAR},
+      </if>
+      <if test="partnerkey != null" >
+        #{partnerkey,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.weixin.entity.WxSetting" >
+    update tb_wx_setting
+    <set >
+      <if test="appid != null" >
+        appid = #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="appsecret != null" >
+        appsecret = #{appsecret,jdbcType=VARCHAR},
+      </if>
+      <if test="partner != null" >
+        partner = #{partner,jdbcType=VARCHAR},
+      </if>
+      <if test="partnerkey != null" >
+        partnerkey = #{partnerkey,jdbcType=VARCHAR},
+      </if>
+      <if test="link != null" >
+        link = #{link,jdbcType=VARCHAR}
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.weixin.entity.WxSetting" >
+    update tb_wx_setting
+    set appid = #{appid,jdbcType=VARCHAR},
+      appsecret = #{appsecret,jdbcType=VARCHAR},
+      partner = #{partner,jdbcType=VARCHAR},
+      partnerkey = #{partnerkey,jdbcType=VARCHAR},
+      link = #{link,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
