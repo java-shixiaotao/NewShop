@@ -36,14 +36,14 @@ public class UserCtrl extends StringUtil {
 	private Cart cart= new Cart();
 	Map<String, Object> map = new HashMap<String, Object>();
 	SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
-	@RequestMapping(value = "/userAddjsp.html")
+	@RequestMapping(value = "/userAddjsp")
 	public ModelAndView addjsp() {
 		ModelAndView ml = new ModelAndView();
 		ml.setViewName("main/user/add");
 		return ml;
 	}
 
-	@RequestMapping(value = "/page/userInsert.html")
+	@RequestMapping(value = "/page/userInsert")
 	public ModelAndView insert(String url, HttpServletRequest request, HttpSession session) {
 		System.out.println("系统进入用户更新后台！！！！！！！");
 		System.out.println("session中的openid:>>>>"+session.getAttribute("oppen_id"));
@@ -99,7 +99,7 @@ public class UserCtrl extends StringUtil {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/page/userUpdate.html")
+	@RequestMapping(value = "/page/userUpdate")
 	public Object update(String realname, String head_img, String oppen_id) {
 		map.put("realname", realname);
 		map.put("head_img", head_img);
@@ -109,7 +109,7 @@ public class UserCtrl extends StringUtil {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/main/userUpstatus.html")
+	@RequestMapping(value = "/main/userUpstatus")
 	public Object upstatus(String oppen_id, Integer status) {
 		map.put("status", status);
 		map.put("oppen_id", oppen_id);
@@ -117,7 +117,7 @@ public class UserCtrl extends StringUtil {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/page/userUparea.html")
+	@RequestMapping(value = "/page/userUparea")
 	public Object uparea(Integer area_id, String area_name, String oppen_id) {
 		map.put("area_id", area_id);
 		map.put("area_name", area_name);
@@ -126,14 +126,14 @@ public class UserCtrl extends StringUtil {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/main/userUpmbertime.html")
+	@RequestMapping(value = "/main/userUpmbertime")
 	public Object upmbertime(String oppen_id, String member_time) {
 		map.put("member_time", member_time);
 		map.put("oppen_id", oppen_id);
 		return userService.upmbertime(map) + "";
 	}
 
-	@RequestMapping(value = "/main/userList.html")
+	@RequestMapping(value = "/main/userList")
 	public ModelAndView list(String realname,
                              @RequestParam(defaultValue = "1") Integer status,
                              @RequestParam(defaultValue = "1") Integer currentPage,
@@ -164,7 +164,7 @@ public class UserCtrl extends StringUtil {
 		}
 	}
 
-	@RequestMapping(value = "/main/userListById.html")
+	@RequestMapping(value = "/main/userListById")
 	public ModelAndView listById(String oppen_id) {
 		user.setOppen_id(oppen_id);
 		List<User> list = userService.listById(user);
@@ -174,7 +174,7 @@ public class UserCtrl extends StringUtil {
 		return ml;
 	}
 
-	@RequestMapping(value = "/page/center.html")
+	@RequestMapping(value = "/page/center")
 	public ModelAndView userListById(HttpSession session) {
 		String oppen_id = getOppen_id(session);
 		user.setOppen_id(oppen_id);
@@ -192,7 +192,7 @@ public class UserCtrl extends StringUtil {
 
 	//判断经销商是否存在
 	@ResponseBody
-	@RequestMapping(value = "/page/isMemberCodeExit.html")
+	@RequestMapping(value = "/page/isMemberCodeExit")
 	public Object isMemberCodeExit(String memberCode) {
 		Membership mem=userService.selectMemberByMemberCode(memberCode);
 		Map<String,Object> map=new HashMap<>();
@@ -205,7 +205,7 @@ public class UserCtrl extends StringUtil {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/page/updateMemberCode.html")
+	@RequestMapping(value = "/page/updateMemberCode")
 	public Object updateMemberCode(String member_code, HttpSession session) {
 		String oppen_id = getOppen_id(session);
 		Map<String,Object> param=new HashMap<>();

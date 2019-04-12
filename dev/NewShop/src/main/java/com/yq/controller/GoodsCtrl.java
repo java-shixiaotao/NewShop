@@ -34,7 +34,7 @@ public class GoodsCtrl extends StringUtil {
 	
 	Map<String, Object> map = new HashMap<String, Object>();
 	SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
-	@RequestMapping(value = "/main/goodsAddjsp.html")
+	@RequestMapping(value = "/main/goodsAddjsp")
 	public ModelAndView addjsp() {
 		ModelAndView ml = new ModelAndView();
 		Category category = new Category();
@@ -46,7 +46,7 @@ public class GoodsCtrl extends StringUtil {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/main/goodsInsert.html")
+	@RequestMapping(value = "/main/goodsInsert")
 	public String insert(String goods_name, String goods_img,String goods_spe,
 			Float goods_price, String goods_detail, Integer ctg_id,
 			Integer status,Integer type) throws UnsupportedEncodingException {
@@ -68,7 +68,7 @@ public class GoodsCtrl extends StringUtil {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/main/goodsUpdate.html")
+	@RequestMapping(value = "/main/goodsUpdate")
 	public Object update(String goods_name, String goods_img,String goods_spe,
 			Float goods_price, String goods_detail, String add_time,
 			Integer ctg_id, Integer goods_id) throws UnsupportedEncodingException {
@@ -87,7 +87,7 @@ public class GoodsCtrl extends StringUtil {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/main/goodsUpstatus.html")
+	@RequestMapping(value = "/main/goodsUpstatus")
 	public Object upstatus(Integer goods_id, Integer status) {
 		map.put("status", status);
 		map.put("goods_id", goods_id);
@@ -95,14 +95,14 @@ public class GoodsCtrl extends StringUtil {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/main/goodsUpisrec.html")
+	@RequestMapping(value = "/main/goodsUpisrec")
 	public Object upisrec(Integer goods_id, Integer is_recommend) {
 		map.put("is_recommend", is_recommend);
 		map.put("goods_id", goods_id);
 		return goodsService.upisrec(map) + "";
 	}
 
-	@RequestMapping(value = "/main/goodsList.html")
+	@RequestMapping(value = "/main/goodsList")
 	public ModelAndView list(Integer status, @RequestParam(defaultValue = "") String goods_name,
                              @RequestParam(defaultValue = "0") Integer ctg_id,
                              @RequestParam(defaultValue = "1") Integer currentPage,
@@ -125,7 +125,7 @@ public class GoodsCtrl extends StringUtil {
 		return ml;
 	}
 
-	@RequestMapping(value = "/main/goodsListById.html")
+	@RequestMapping(value = "/main/goodsListById")
 	public ModelAndView listById(Integer goods_id) {
 		// addjsp();
 		Goods goods = new Goods();
@@ -147,7 +147,7 @@ public class GoodsCtrl extends StringUtil {
 	 * @param goods_id
 	 * @return
 	 */
-	@RequestMapping(value = "/page/goodsListById.html")
+	@RequestMapping(value = "/page/goodsListById")
 	public ModelAndView goodsListById(Integer goods_id) {
 		Goods goods = new Goods();
 		goods.setGoods_id(goods_id);
@@ -165,13 +165,13 @@ public class GoodsCtrl extends StringUtil {
 	 * @param goods_id
 	 * @return
 	 */
-	@RequestMapping(value = "/page/goodsOrder.html")
+	@RequestMapping(value = "/page/goodsOrder")
 	public ModelAndView goodsOrder() {
 		ModelAndView ml=new ModelAndView("page/goods-order");
 		return ml;
 	}
 	
-	@RequestMapping(value = "/page/secGoodsList.html")
+	@RequestMapping(value = "/page/secGoodsList")
 	public ModelAndView secGoodsList(String goods_name,
                                      @RequestParam(defaultValue = "0") Integer is_recommend,
                                      @RequestParam(defaultValue = "1") Integer status,

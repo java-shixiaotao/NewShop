@@ -37,7 +37,7 @@
 	</nav>
 	<div class="pd-20">
 		<div class="cl pd-5 bg-1 bk-gray mt-20">
-			<span class="l"> <a href="menuAddjsp.html"
+			<span class="l"> <a href="menuAddjsp"
 				class="btn btn-primary radius"> <i class="Hui-iconfont">&#xe600;</i>
 					添加记录
 			</a></span>
@@ -70,7 +70,7 @@
 							<td>${list.add_time}</td>
 							
 							<td>
-							<a href="menuListById.html?goods_id=${list.goods_id}">编辑</a>&nbsp;&nbsp;
+							<a href="menuListById?goods_id=${list.goods_id}">编辑</a>&nbsp;&nbsp;
 							<a href="javascript:;" onclick="del('${list.goods_id}')">删除</a></td>					
 						</tr>
 					</c:forEach>
@@ -114,7 +114,7 @@
 		return ;
 		}
 		$.ajax({
-			url:'menuUpstatus.html',
+			url:'menuUpstatus',
 			type:'post',
 			data:'goods_id='+goods_id+'&status=0',
 			success:function(rs){
@@ -131,30 +131,30 @@
 	var totalPage = '${totalPage}';
 	function upPage() {
 		if (currentPage > 1) {
-			window.location.href = 'menuList.html?currentPage='
+			window.location.href = 'menuList?currentPage='
 					+ (parseInt(currentPage) - 1)+'&status=1';
 			return;
 		}
 	}
 	function downPage() {
 		if (parseInt(currentPage) < parseInt(totalPage)) {
-			window.location.href = 'menuList.html?currentPage='
+			window.location.href = 'menuList?currentPage='
 					+ (parseInt(currentPage) + 1)+'&status=1';
 			return;
 		}
 	}
 	function fpage() {
-		window.location.href = 'menuList.html?currentPage=1'+'&status=1';
+		window.location.href = 'menuList?currentPage=1'+'&status=1';
 		return;
 	}
 	function epage() {
-		window.location.href = 'menuList.html?currentPage=' + totalPage+'&status=1';
+		window.location.href = 'menuList?currentPage=' + totalPage+'&status=1';
 		return;
 	}
 	function spage() {
 		var seastr =$('#seastr').val();
 		if (parseInt(seastr)< parseInt(totalPage)||parseInt(seastr)== parseInt(totalPage)) {
-		window.location.href = 'menuList.html?currentPage=' + seastr+'&status=1';
+		window.location.href = 'menuList?currentPage=' + seastr+'&status=1';
 		}
 		return;
 	}

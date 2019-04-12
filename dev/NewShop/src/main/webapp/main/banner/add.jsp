@@ -90,7 +90,7 @@
 		var type = $('#type').val();
 		var ban_img = $('#filepath').val();
 		$.ajax({
-			url:'banInsert.html',
+			url:'banInsert',
 			type:'post',
 			data:'ban_img='+ban_img+'&url='+url+'&type='+type,
 			success:function(rs){
@@ -128,14 +128,14 @@
 			return;
 		}
 		$.ajaxFileUpload({
-					url : 'upload.html', //需要链接到服务器地址  
+					url : 'upload', //需要链接到服务器地址
 					secureuri : false,
 					fileElementId : "file", //文件选择框的id属性  
 					dataType : 'text', //服务器返回的格式，可以是json  
 					success : function(rs) //相当于java中try语句块的用法  
 					{	
 						if (rs != "") {
-							$('#img').html("");
+							$('#img')("");
 							$('#img').append("<img src='"+rs+"' width='100' height='100'>");
 							$('#filepath').val(rs);
 						} else {

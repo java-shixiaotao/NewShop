@@ -5,6 +5,8 @@ import com.weixin.entity.Button;
 import com.weixin.entity.ViewButton;
 import com.weixin.service.ButtonService;
 import com.weixin.util.MenuUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,13 +19,17 @@ import java.util.*;
 @Controller
 @RequestMapping
 public class ButtonController {
+	private static Logger log = LoggerFactory.getLogger(ButtonController.class);
+
 	@Autowired
 	private ButtonService buttonService ;
-//	private Button button;
+
 	private Map<String,Object> map = new HashMap<String, Object>();
 	Gson gson = new Gson();
+
+	//将前台转换成了可配置选项
 	@ResponseBody
-	@RequestMapping(value="/main/buttonInsert.html")
+	@RequestMapping(value="/main/buttonInsert")
 	public String insert(Button button){
 		SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String id =Long.toString(new Date().getTime());
@@ -43,7 +49,6 @@ public class ButtonController {
 				rs  =	buttonService.insert(button);
 			}
 		}else{
-			//button.setSuper_id(id);
 			count =	buttonService.selectCount(button);
 			if(count>=5){
 				message="button is already >= 5";
@@ -59,8 +64,14 @@ public class ButtonController {
 		map.put("message",message);
 		return gson.toJson(map);
 	}
+
+	/**
+	 * 按钮更新功能
+	 * @param button
+	 * @return
+	 */
 	@ResponseBody
-	@RequestMapping(value="/main/buttonUpdate.html")
+	@RequestMapping(value="/main/buttonUpdate")
 	public String update(Button button){
 		int  rs  =	buttonService.updateByPrimaryKeySelective(button);
 		if(rs==-1){
@@ -69,9 +80,14 @@ public class ButtonController {
 		map.put("rs",rs);
 		return gson.toJson(map);
 	}
-	
+
+	/**
+	 * 按钮排序
+	 * @param button
+	 * @return
+	 */
 	@ResponseBody
-	@RequestMapping(value="/main/buttonSort.html")
+	@RequestMapping(value="/main/buttonSort")
 	public String sort(Button button){
 		int  rs  =	buttonService.sort(button);
 		if(rs==-1){
@@ -80,8 +96,14 @@ public class ButtonController {
 		map.put("rs",rs);
 		return gson.toJson(map);
 	}
+
+	/**
+	 * 删除菜单
+	 * @param button
+	 * @return
+	 */
 	@ResponseBody
-	@RequestMapping(value="/main/buttonDelete.html")
+	@RequestMapping(value="/main/buttonDelete")
 	public String delete(Button button){
 		int  rs  = 0 ;
 		String message="";
@@ -98,22 +120,34 @@ public class ButtonController {
 			rs  =	buttonService.deleteByPrimaryKey(button.getId());
 		}
 		
-		if(rs==-1){
-			message = "sort is error!";
-		}
+//		if(rs==-1){
+//			message = "sort is error!";
+//		}
 		map.put("rs",rs);
 		map.put("message",message);
 		return gson.toJson(map);
 	}
-	
-	@RequestMapping(value="/main/buttonById.html")
+
+	/**
+	 * 菜单编辑页面
+	 * @param id
+	 * @param ml
+	 * @return
+	 */
+	@RequestMapping(value="/main/buttonById")
 	public ModelAndView getButton(String id, ModelAndView ml){
 		ml.addObject("list",buttonService.selectByPrimaryKey(id));
 		ml.setViewName("main/button/info");
 		return  ml ;
 	}
-	
-	@RequestMapping(value="/main/buttonList.html")
+
+	/**
+	 * 获取按钮页面
+	 * @param button
+	 * @param ml
+	 * @return
+	 */
+	@RequestMapping(value="/main/buttonList")
 	public ModelAndView getList(Button button, ModelAndView ml){
 		button.setLevel(1);
 		List<Button> mainBtn =	buttonService.select(button);
@@ -128,17 +162,24 @@ public class ButtonController {
 		ml.setViewName("main/button/list");
 		return  ml ;
 	}
-	@RequestMapping(value="/main/addButton.html")
+
+	/**
+	 * 添加按钮页面
+	 * @param button
+	 * @param ml
+	 * @return
+	 */
+	@RequestMapping(value="/main/addButton")
 	public ModelAndView addButton(Button button, ModelAndView ml){
 		button.setLevel(1);
-		List<Button> list =	buttonService.select(button);
+		List<Button> list =	buttonService.select(button); //获取1级菜单
 		ml.addObject("list",list);
 		ml.setViewName("main/button/add");
 		return  ml ;
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/main/cMenu.html")
+	@RequestMapping(value = "/main/cMenu")
 	public String cMenu(Button button){
 		button.setLevel(1);
 		List<Button> mainBtn =	buttonService.select(button);

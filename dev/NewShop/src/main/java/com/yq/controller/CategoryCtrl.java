@@ -26,13 +26,13 @@ public class CategoryCtrl {
 	@Autowired
 	private  GoodsService  goodsService;
 
-	@RequestMapping(value = "/main/ctgAddjsp.html")
+	@RequestMapping(value = "/main/ctgAddjsp")
 	public ModelAndView addjsp() {
 		return new ModelAndView("main/category/add");
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/main/ctgInsert.html")
+	@RequestMapping(value = "/main/ctgInsert")
 	public String insert(String ctg_name, String ctg_img, Integer status,
 			Integer sort) throws UnsupportedEncodingException {
 			Map<String, Object> map = new HashMap<String, Object>();
@@ -44,7 +44,7 @@ public class CategoryCtrl {
 			return categoryService.insert(map)+"";
 	}
 	@ResponseBody
-	@RequestMapping(value = "/main/ctgUpdate.html")
+	@RequestMapping(value = "/main/ctgUpdate")
 	public Object update(Integer ctg_id, String ctg_img,String ctg_name) throws UnsupportedEncodingException {
 		ctg_name = java.net.URLDecoder.decode(ctg_name,"utf-8") ;
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -55,7 +55,7 @@ public class CategoryCtrl {
 		
 	}
 	@ResponseBody
-	@RequestMapping(value = "/main/ctgUpstatus.html")
+	@RequestMapping(value = "/main/ctgUpstatus")
 	public Object upstatus(Integer ctg_id,Integer status) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("status", status);
@@ -64,7 +64,7 @@ public class CategoryCtrl {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/main/ctgSort.html")
+	@RequestMapping(value = "/main/ctgSort")
 	public Object sort(Integer ctg_id,Integer sort) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("sort", sort);
@@ -72,7 +72,7 @@ public class CategoryCtrl {
 		return categoryService.sort(map)+"";
 	}
 	
-	@RequestMapping(value = "/main/ctgList.html")
+	@RequestMapping(value = "/main/ctgList")
 	public ModelAndView list(Integer status) {
 		Category category= new Category();
 		category.setStatus(status);
@@ -82,7 +82,7 @@ public class CategoryCtrl {
 		ml.setViewName("main/category/list");
 		return ml;
 	}
-	@RequestMapping(value = "/main/ctgListById.html")
+	@RequestMapping(value = "/main/ctgListById")
 	public ModelAndView listById(Integer ctg_id) {
 		Category category= new Category();
 		category.setCtg_id(ctg_id);
@@ -92,7 +92,7 @@ public class CategoryCtrl {
 		ml.setViewName("main/category/info");
 		return ml;
 	}
-	@RequestMapping(value = "/page/category.html")
+	@RequestMapping(value = "/page/category")
 	public ModelAndView ctgList(@RequestParam(defaultValue="0") Integer ctg_id) {
 		Goods goods= new Goods();
 		Category category= new Category();

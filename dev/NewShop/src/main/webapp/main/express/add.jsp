@@ -77,7 +77,7 @@
 		var express_dm = $('#express_dm').val();
 		var express_name = $('#express_name').val();
 		$.ajax({
-			url:'exp_insert.html',
+			url:'exp_insert',
 			type:'post',
 			data:'express_dm='+express_dm+'&express_name='+encodeURI(express_name),
 			success:function(rs){

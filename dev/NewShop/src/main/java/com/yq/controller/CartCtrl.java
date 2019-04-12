@@ -29,7 +29,7 @@ public class CartCtrl extends StringUtil{
 	private static Gson gson=new Gson();
 
 	@ResponseBody
-	@RequestMapping(value = "/page/cartInsert.html")
+	@RequestMapping(value = "/page/cartInsert")
 	public void insert(Integer goods_id, String goods_name, String goods_img, String goods_spe, Float goods_price, Float goods_total,
                        @RequestParam(defaultValue="1")Integer goods_num, String oppen_id, HttpServletResponse response, HttpSession session) {
 		try {
@@ -71,7 +71,7 @@ public class CartCtrl extends StringUtil{
 			}
 	}
 	@ResponseBody
-	@RequestMapping(value = "/page/cartUpdate.html")
+	@RequestMapping(value = "/page/cartUpdate")
 	public void update(Float goods_price, Float goods_total, Integer goods_num, Integer goods_id, Integer s, HttpServletResponse response, HttpSession session) {
 		try {	
 //		setOppen_id("111", session);//测试代码，模仿登录
@@ -106,7 +106,7 @@ public class CartCtrl extends StringUtil{
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/page/cartDel.html")
+	@RequestMapping(value = "/page/cartDel")
 	public void delete(Integer goods_id, HttpSession session, HttpServletResponse response) {
 		int cart_num =Integer.parseInt(session.getAttribute("cart_num").toString())-1;
 		session.setAttribute("cart_num", cart_num);
@@ -124,7 +124,7 @@ public class CartCtrl extends StringUtil{
 		}
 	}
 	
-	@RequestMapping(value = "/page/cartList.html")
+	@RequestMapping(value = "/page/cartList")
 	public ModelAndView list(String oppen_id, HttpSession session) {
 //		setOppen_id("111", session);//测试代码，模仿登录
 		Cart cart= new Cart();
@@ -140,7 +140,7 @@ public class CartCtrl extends StringUtil{
 		return ml;
 	}
 	@ResponseBody
-	@RequestMapping(value = "/page/getCartNum.html")
+	@RequestMapping(value = "/page/getCartNum")
 	public Map<String,Integer> getCartNum(HttpSession session) {
 		Cart cart= new Cart();
 		cart.setOppen_id(getOppen_id(session));

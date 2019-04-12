@@ -41,7 +41,7 @@ public class MenuCtrl extends StringUtil {
 	private static Gson gson = new Gson();
 
 
-	@RequestMapping(value = "/main/menuAddjsp.html")
+	@RequestMapping(value = "/main/menuAddjsp")
 	public ModelAndView addjsp() {
 		ModelAndView ml = new ModelAndView();
 		ml.setViewName("main/menu/add");
@@ -49,7 +49,7 @@ public class MenuCtrl extends StringUtil {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/main/menuInsert.html")
+	@RequestMapping(value = "/main/menuInsert")
 	public String insert(String goods_name, String goods_img, Float goods_price, String goods_spe, String goods_detail,
 			Integer ctg_id, Integer status, Integer type) {
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -69,7 +69,7 @@ public class MenuCtrl extends StringUtil {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/page/menuCartInsert.html")
+	@RequestMapping(value = "/page/menuCartInsert")
 	public void insert(Integer goods_id, String goods_name, String goods_img, String goods_spe, Float goods_price,
                        Float goods_total, @RequestParam(defaultValue = "1") Integer goods_num, String oppen_id,
                        HttpServletResponse response, HttpSession session) {
@@ -129,7 +129,7 @@ public class MenuCtrl extends StringUtil {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/main/menuUpdate.html")
+	@RequestMapping(value = "/main/menuUpdate")
 	public Object update(String goods_name, String goods_img, Float goods_price, String goods_spe, String goods_detail,
 			String add_time, Integer ctg_id, Integer goods_id) {
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -147,7 +147,7 @@ public class MenuCtrl extends StringUtil {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/main/menuUpstatus.html")
+	@RequestMapping(value = "/main/menuUpstatus")
 	public Object upstatus(Integer goods_id, Integer status) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("status", status);
@@ -155,7 +155,7 @@ public class MenuCtrl extends StringUtil {
 		return goodsService.upstatus(map) + "";
 	}
 
-	@RequestMapping(value = "/main/menuList.html")
+	@RequestMapping(value = "/main/menuList")
 	public ModelAndView list(@RequestParam(defaultValue = "1") Integer status,
                              @RequestParam(defaultValue = "1") Integer currentPage, HttpServletRequest request) {
 		Goods goods = new Goods();
@@ -172,7 +172,7 @@ public class MenuCtrl extends StringUtil {
 		return ml;
 	}
 
-	@RequestMapping(value = "/main/menuListById.html")
+	@RequestMapping(value = "/main/menuListById")
 	public ModelAndView listById(Integer goods_id) {
 		// addjsp();
 		Goods goods = new Goods();
@@ -185,7 +185,7 @@ public class MenuCtrl extends StringUtil {
 		return ml;
 	}
 
-	@RequestMapping(value = "/page/menuList.html")
+	@RequestMapping(value = "/page/menuList")
 	public ModelAndView menuList(@RequestParam(defaultValue = "1") Integer status) {
 		Goods goods = new Goods();
 		goods.setType(2);
@@ -203,7 +203,7 @@ public class MenuCtrl extends StringUtil {
 	 * @param goods_id
 	 * @return
 	 */
-	@RequestMapping(value = "/page/menuListById.html")
+	@RequestMapping(value = "/page/menuListById")
 	public ModelAndView menuListById(Integer goods_id) {
 		Goods goods = new Goods();
 		goods.setGoods_id(goods_id);

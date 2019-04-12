@@ -37,7 +37,7 @@
 	<br>
 	<div class="pd-20">
 		<div class="cl pd-5 bg-1 bk-gray mt-20">
-			<span class="l"> <a href="addrAddjsp.html?area_id=${level}"
+			<span class="l"> <a href="addrAddjsp?area_id=${level}"
 				class="btn btn-primary radius"> <i class="Hui-iconfont">&#xe600;</i>
 					添加记录
 			</a></span>
@@ -64,7 +64,7 @@
 							class="input-text" onblur="sort('${list.area_id}','sort${s.index}')"></td>
 							<td>${list.area_name}</td>
 							<td>
-							<a href="areaListById.html?area_id=${list.area_id}">编辑</a>&nbsp;&nbsp;
+							<a href="areaListById?area_id=${list.area_id}">编辑</a>&nbsp;&nbsp;
 							<a href="javascript:;" onclick="del('${list.area_id}')">删除</a></td>					
 						</tr>
 					</c:forEach>
@@ -109,7 +109,7 @@
 		return ;
 		}
 		$.ajax({
-			url:'areaUpstatus.html',
+			url:'areaUpstatus',
 			type:'post',
 			data:'area_id='+area_id+'&status=0',
 			success:function(rs){
@@ -130,7 +130,7 @@
 		function sort(id,sort){
 			var str = $('#'+sort).val();
 			$.ajax({
-				url:'areaSort.html',
+				url:'areaSort',
 				type:'post',
 				data:'sort='+str+'&area_id='+id,
 				success:function(rs){

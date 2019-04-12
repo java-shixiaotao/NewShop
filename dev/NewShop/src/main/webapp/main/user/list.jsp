@@ -49,7 +49,7 @@
 				function search() {
 					var realname =$('#realname').val();
 					
-					window.location.href = 'userList.html?realname=' +realname;
+					window.location.href = 'userList?realname=' +realname;
 				}
 			</script>
 		</div>
@@ -125,30 +125,30 @@
 	var totalPage = '${totalPage}';
 	function upPage() {
 		if (currentPage > 1) {
-			window.location.href = 'userList.html?currentPage='
+			window.location.href = 'userList?currentPage='
 					+ (parseInt(currentPage) - 1)+'&status=1';
 			return;
 		}
 	}
 	function downPage() {
 		if (parseInt(currentPage) < parseInt(totalPage)) {
-			window.location.href = 'userList.html?currentPage='
+			window.location.href = 'userList?currentPage='
 					+ (parseInt(currentPage) + 1)+'&status=1';
 			return;
 		}
 	}
 	function fpage() {
-		window.location.href = 'userList.html?currentPage=1'+'&status=1';
+		window.location.href = 'userList?currentPage=1'+'&status=1';
 		return;
 	}
 	function epage() {
-		window.location.href = 'userList.html?currentPage=' + totalPage+'&status=1';
+		window.location.href = 'userList?currentPage=' + totalPage+'&status=1';
 		return;
 	}
 	function spage() {
 		var seastr =$('#seastr').val();
 		if (parseInt(seastr)< parseInt(totalPage)||parseInt(seastr)== parseInt(totalPage)) {
-		window.location.href = 'userList.html?currentPage=' + seastr+'&status=1';
+		window.location.href = 'userList?currentPage=' + seastr+'&status=1';
 		}
 		return;
 	}
@@ -156,7 +156,7 @@
 	function upmbertime(id,oppen_id){
 		var member_time = $('#member_time'+id).val();
 		$.ajax({
-			url:'userUpmbertime.html',
+			url:'userUpmbertime',
 			type:'post',
 			data:'member_time='+member_time+'&oppen_id='+oppen_id,
 			success:function(rs){

@@ -38,7 +38,7 @@
 	<br>
 	<div class="pd-20">
 		<div class="cl pd-5 bg-1 bk-gray mt-20">
-			<span class="l"> <a href="ctgAddjsp.html"
+			<span class="l"> <a href="ctgAddjsp"
 				class="btn btn-primary radius"> <i class="Hui-iconfont">&#xe600;</i>
 					添加记录
 			</a></span>
@@ -67,7 +67,7 @@
 							<td>${list.ctg_name}</td>
 							<td><img alt="" src="${list.ctg_img}" width="50" height="50"> </td>
 							<td>
-							<a href="ctgListById.html?ctg_id=${list.ctg_id}">编辑</a>&nbsp;&nbsp;
+							<a href="ctgListById?ctg_id=${list.ctg_id}">编辑</a>&nbsp;&nbsp;
 							<a href="javascript:;" onclick="del('${list.ctg_id}')">删除</a></td>					
 						</tr>
 					</c:forEach>
@@ -83,7 +83,7 @@
 		return ;
 		}
 		$.ajax({
-			url:'ctgUpstatus.html',
+			url:'ctgUpstatus',
 			type:'post',
 			data:'ctg_id='+ctg_id+'&status=0',
 			success:function(rs){
@@ -99,7 +99,7 @@
 	function sort(id,sort){
 		var str = $('#'+sort).val();
 		$.ajax({
-			url:'ctgSort.html',
+			url:'ctgSort',
 			type:'post',
 			data:'sort='+str+'&ctg_id='+id,
 			success:function(rs){

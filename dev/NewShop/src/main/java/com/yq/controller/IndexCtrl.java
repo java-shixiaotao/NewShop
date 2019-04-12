@@ -19,12 +19,12 @@ public class IndexCtrl extends StringUtil{
 	@Autowired
 	private UserService userService;
 
-	@RequestMapping(value="/main/maintest")
+	@RequestMapping(value="/main/main")
 	public ModelAndView mainindex(){
 		return new ModelAndView("main/index");
 	}
 
-	@RequestMapping(value="/page/index.html")
+	@RequestMapping(value="/page/index")
 	public ModelAndView index(HttpServletRequest request, HttpSession session){
 		//是否弹菜单
 		String showGoumai = request.getParameter("showGoumai");

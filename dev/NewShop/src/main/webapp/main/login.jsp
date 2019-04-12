@@ -65,12 +65,12 @@ function add(){
 	var username = $('#username').val();
 	var password = $('#password').val();
 	$.ajax({
-		url:'../admin/isExist.html',
+		url:'../admin/isExist',
 		type:'post',
 		data:'username='+username+'&password='+password,
 		success:function(rs){
 			if(rs==1){
-			window.location.href='main.html';
+			window.location.href='main';
 			}else{
 				alert("失败！");
 			}

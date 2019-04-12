@@ -31,13 +31,13 @@
   </select>
   
   
-  <select id="selectByPrimaryKey" resultType="com.weixin.entity.Button" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultType="com.weixin.entity.Button" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from tb_button
     where id = #{id}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from tb_button
     where id = #{id,jdbcType=VARCHAR}
   </delete>

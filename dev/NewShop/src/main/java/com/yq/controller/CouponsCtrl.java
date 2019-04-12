@@ -27,7 +27,7 @@ public class CouponsCtrl extends StringUtil {
 	private CouponsService couponsService;
 	Map<String, Object> map = new HashMap<String, Object>();
 
-	@RequestMapping(value = "/main/cpsAddjsp.html")
+	@RequestMapping(value = "/main/cpsAddjsp")
 	public ModelAndView addjsp() {
 		ModelAndView ml = new ModelAndView();
 		ml.setViewName("main/coupons/add");
@@ -35,7 +35,7 @@ public class CouponsCtrl extends StringUtil {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/main/cpsInsert.html")
+	@RequestMapping(value = "/main/cpsInsert")
 	public String insert(String cps_name, String cps_code, Float cps_price,
 			String cps_time, Integer cps_level, String oppen_id) throws UnsupportedEncodingException {
 		String ranStr = (int) (Math.random() * 90000) + 1000 + "";
@@ -53,7 +53,7 @@ public class CouponsCtrl extends StringUtil {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/page/cpsInsert.html")
+	@RequestMapping(value = "/page/cpsInsert")
 	public String pageInsert(String cps_name, Integer cps_id, Float cps_price,
 			Integer cps_level, String oppen_id,
 			HttpSession session) {
@@ -96,7 +96,7 @@ public class CouponsCtrl extends StringUtil {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/main/cpsUpdate.html")
+	@RequestMapping(value = "/main/cpsUpdate")
 	public Object update(String cps_name, String cps_code, Float cps_price,
 			String cps_time, Integer cps_level, Integer cps_id) throws UnsupportedEncodingException {
 		cps_name = java.net.URLDecoder.decode(cps_name,"utf-8") ;
@@ -108,13 +108,13 @@ public class CouponsCtrl extends StringUtil {
 		return couponsService.update(map) + "";
 	}
 	@ResponseBody
-	@RequestMapping(value = "/main/cpsDelete.html")
+	@RequestMapping(value = "/main/cpsDelete")
 	public Object delete(Integer cps_id) {
 		map.put("cps_id", cps_id);
 		return couponsService.delete(map) + "";
 	}
 
-	@RequestMapping(value = "/main/cpsList.html")
+	@RequestMapping(value = "/main/cpsList")
 	public ModelAndView list(
 			@RequestParam(defaultValue = "1") Integer currentPage,
 			HttpServletRequest request) {
@@ -137,7 +137,7 @@ public class CouponsCtrl extends StringUtil {
 		return ml;
 	}
 	
-	@RequestMapping(value = "/page/cpsList.html")
+	@RequestMapping(value = "/page/cpsList")
 	public ModelAndView listByOppen_id(String oppen_id,
                                        HttpServletRequest request, HttpSession session) {
 		SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
@@ -157,7 +157,7 @@ public class CouponsCtrl extends StringUtil {
 		return ml;
 	}
 	
-	@RequestMapping(value = "/page/cpsAll.html")
+	@RequestMapping(value = "/page/cpsAll")
 	public ModelAndView listAll(String oppen_id) {
 		SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
 		String add_time =sf.format(new Date());
@@ -172,7 +172,7 @@ public class CouponsCtrl extends StringUtil {
 		return ml;
 	}
 	
-	@RequestMapping(value = "/page/cartCoupons.html")
+	@RequestMapping(value = "/page/cartCoupons")
 	public ModelAndView cartCoupons(String oppen_id, Integer addr_id ,
                                     @RequestParam(defaultValue = "1") Integer currentPage,
                                     HttpServletRequest request, HttpSession session) {
@@ -190,7 +190,7 @@ public class CouponsCtrl extends StringUtil {
 		ml.setViewName("page/cart-coupons");
 		return ml;
 	}
-	@RequestMapping(value = "/page/goodsCoupons.html")
+	@RequestMapping(value = "/page/goodsCoupons")
 	public ModelAndView goodsCoupons(Integer goods_id, Integer goods_num, String oppen_id, Integer addr_id ,
                                      @RequestParam(defaultValue = "1") Integer currentPage,
                                      HttpServletRequest request, HttpSession session) {
@@ -210,7 +210,7 @@ public class CouponsCtrl extends StringUtil {
 		return ml;
 	}
 	
-	@RequestMapping(value = "/main/cpsListById.html")
+	@RequestMapping(value = "/main/cpsListById")
 	public ModelAndView listById(Integer cps_id) {
 		Coupons coupons=new Coupons();
 		coupons.setCps_id(cps_id);
@@ -221,7 +221,7 @@ public class CouponsCtrl extends StringUtil {
 		return ml;
 	}
 	
-//	@RequestMapping(value = "/main/cartCpsById.html")
+//	@RequestMapping(value = "/main/cartCpsById")
 //	public ModelAndView cartCpsById(Integer cps_id) {
 //		coupons.setCps_id(cps_id);
 //		List<Coupons> list = couponsService.listById(coupons);

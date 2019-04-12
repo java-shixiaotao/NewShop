@@ -40,7 +40,7 @@ public class UserGiftCtrl extends StringUtil {
      * @param isAll
      * @return
      */
-    @RequestMapping(value = "/page/userGiftList.html")
+    @RequestMapping(value = "/page/userGiftList")
     public ModelAndView userGiftListByOppenId(HttpSession session, @RequestParam(defaultValue = "0")int isAll) {
         ModelAndView ml = new ModelAndView();
         Map<String, Object> map = new HashMap<>();
@@ -75,7 +75,7 @@ public class UserGiftCtrl extends StringUtil {
      * @param session
      * @return
      */
-    @RequestMapping(value = "/page/conversionList.html")
+    @RequestMapping(value = "/page/conversionList")
     public ModelAndView conversionOrderList(String share_id, @RequestParam(defaultValue = "0") Integer addr_id, HttpSession session) {
         ModelAndView ml = new ModelAndView();
         String oppen_id = getOppen_id(session);
@@ -114,7 +114,7 @@ public class UserGiftCtrl extends StringUtil {
      * @param session
      * @return
      */
-    @RequestMapping(value = "/page/direct_conversionList.html")
+    @RequestMapping(value = "/page/direct_conversionList")
     public ModelAndView direct_conversionList(String share_id, @RequestParam(defaultValue = "0") Integer addr_id, HttpSession session) {
         ModelAndView ml = new ModelAndView();
         String oppen_id = getOppen_id(session);
@@ -156,7 +156,7 @@ public class UserGiftCtrl extends StringUtil {
      * @param gift_id
      * @return
      */
-    @RequestMapping(value = "/page/conversionAddressLst.html")
+    @RequestMapping(value = "/page/conversionAddressLst")
     public ModelAndView list(HttpSession session, String gift_id) {
         Address address = new Address();
         address.setOppen_id(getOppen_id(session));
@@ -208,7 +208,7 @@ public class UserGiftCtrl extends StringUtil {
      * @throws UnsupportedEncodingException
      */
     @ResponseBody
-    @RequestMapping(value = "/page/direct_conversion.html", method = RequestMethod.POST)
+    @RequestMapping(value = "/page/direct_conversion", method = RequestMethod.POST)
     public Map<String, String> direct_conversion(String goods_id, String goods_name, String goods_img,
                                           String goods_spe, String goods_price,String goods_num,
                                           Float goods_total,String addr_name, String note,
@@ -284,7 +284,7 @@ public class UserGiftCtrl extends StringUtil {
      * @throws UnsupportedEncodingException
      */
     @ResponseBody
-    @RequestMapping(value = "/page/conversion.html", method = RequestMethod.POST)
+    @RequestMapping(value = "/page/conversion", method = RequestMethod.POST)
     public Map<String, String> conversion(String goods_id, String goods_name, String goods_img,
                                           String goods_spe, String goods_price,String goods_num,
                                           Float goods_total,String addr_name, String note,
@@ -348,7 +348,7 @@ public class UserGiftCtrl extends StringUtil {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "/page/giftPackage.html")
+    @RequestMapping(value = "/page/giftPackage")
     public Object giftPackage(HttpSession session, String gift_ids) {
         List<String> ids=new ArrayList<>();
         if(gift_ids.contains(",")){
@@ -399,7 +399,7 @@ public class UserGiftCtrl extends StringUtil {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "/page/cancelGiftPackage.html")
+    @RequestMapping(value = "/page/cancelGiftPackage")
     public Object cancelGiftPackage(String shareID) {
         Map<String,Object> map=new HashMap<>();
         Map<String,Object> param=new HashMap();

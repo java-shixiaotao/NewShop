@@ -18,7 +18,7 @@ import java.util.Map;
 public class GoodsPicCtrl extends StringUtil {
 	@Autowired
 	private GoodsPicService goodsPicService;
-	@RequestMapping(value = "getPic.html")
+	@RequestMapping(value = "getPic")
 	public ModelAndView getPic(HttpServletRequest request) {
 		String fileName=request.getParameter("filename");
 		String filePath = request.getSession().getServletContext().getRealPath("/")+ "/upload/" + fileName;

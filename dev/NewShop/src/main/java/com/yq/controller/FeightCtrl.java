@@ -18,13 +18,13 @@ public class FeightCtrl {
 	@Autowired
 	private FreightService freightService;
 
-	@RequestMapping(value = "/main/fgtAddjsp.html")
+	@RequestMapping(value = "/main/fgtAddjsp")
 	public ModelAndView addjsp() {
 		return new ModelAndView("main/freight/add");
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/main/fgtInsert.html")
+	@RequestMapping(value = "/main/fgtInsert")
 	public String insert(Float fgt_price,Float free_price) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("fgt_price", fgt_price);
@@ -32,7 +32,7 @@ public class FeightCtrl {
 		return freightService.insert(map)+"";
 	}
 	@ResponseBody
-	@RequestMapping(value = "/main/fgtUpdate.html")
+	@RequestMapping(value = "/main/fgtUpdate")
 	public Object update(Float fgt_price,Float free_price,Integer fgt_id) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("fgt_price", fgt_price);
@@ -42,7 +42,7 @@ public class FeightCtrl {
 		
 	}
 	
-	@RequestMapping(value = "/main/fgtList.html")
+	@RequestMapping(value = "/main/fgtList")
 	public ModelAndView list() {
 		Freight freight= new Freight();
 		List<Freight> list = freightService.list(freight);
@@ -51,7 +51,7 @@ public class FeightCtrl {
 		ml.setViewName("main/freight/list");
 		return ml;
 	}
-	@RequestMapping(value = "/main/fgtListById.html")
+	@RequestMapping(value = "/main/fgtListById")
 	public ModelAndView listById() {
 		Freight freight= new Freight();
 		List<Freight> list = freightService.list(freight);

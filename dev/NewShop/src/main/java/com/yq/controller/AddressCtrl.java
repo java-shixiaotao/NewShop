@@ -24,13 +24,13 @@ public class AddressCtrl extends StringUtil{
 	@Autowired
 	private AddressService addressService;
 	
-	@RequestMapping(value = "/page/addrAddjsp.html")
+	@RequestMapping(value = "/page/addrAddjsp")
 	public ModelAndView addjsp() {
 		return new ModelAndView("page/address-add");
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/page/addrInsert.html")
+	@RequestMapping(value = "/page/addrInsert")
 	public String insert(String province , String city ,
                          String area , String addr_user, String addr_name,
                          String addr_tel, String oppen_id, String sort, HttpSession session) {
@@ -48,7 +48,7 @@ public class AddressCtrl extends StringUtil{
 			return addressService.insert(map)+"";
 	}
 	@ResponseBody
-	@RequestMapping(value = "/page/addrUpdate.html")
+	@RequestMapping(value = "/page/addrUpdate")
 	public String update(String province , String city ,
                          String area , String addr_user, String addr_name,
                          String addr_tel, String oppen_id, Integer addr_id, HttpSession session) {
@@ -66,7 +66,7 @@ public class AddressCtrl extends StringUtil{
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/page/addrDel.html")
+	@RequestMapping(value = "/page/addrDel")
 	public Object delete(Integer addr_id) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("addr_id",addr_id);
@@ -74,7 +74,7 @@ public class AddressCtrl extends StringUtil{
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/page/addrSort.html")
+	@RequestMapping(value = "/page/addrSort")
 	public Object sort(Integer addr_id) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 		String datetime = sdf.format(new Date());
@@ -92,7 +92,7 @@ public class AddressCtrl extends StringUtil{
 	 * @param session
 	 * @return
 	 */
-	@RequestMapping(value = "/page/addrList.html")
+	@RequestMapping(value = "/page/addrList")
 	public ModelAndView list(Integer addr_id, Integer cps_id, String oppen_id, HttpSession session) {
 		Address address = new Address();
 		address.setOppen_id(getOppen_id(session));
@@ -113,7 +113,7 @@ public class AddressCtrl extends StringUtil{
 	 * @param session
 	 * @return
 	 */
-	@RequestMapping(value = "/page/directBuyAddrList.html")
+	@RequestMapping(value = "/page/directBuyAddrList")
 	public ModelAndView directBuyAddrList(Integer addr_id, String goods_id, String member_code, String goods_price, String oppen_id, HttpSession session) {
 		Address address = new Address();
 		address.setOppen_id(getOppen_id(session));
@@ -129,7 +129,7 @@ public class AddressCtrl extends StringUtil{
 	}
 
 	//会员注册页面的
-	@RequestMapping(value = "/page/membershipAddrList.html")
+	@RequestMapping(value = "/page/membershipAddrList")
 	public ModelAndView membershipAddrList(Integer addr_id, @RequestParam(defaultValue = "0") Integer cps_id, String oppen_id, HttpSession session) {
 		Address address = new Address();
 		address.setOppen_id(getOppen_id(session));
@@ -142,7 +142,7 @@ public class AddressCtrl extends StringUtil{
 		return ml;
 	}
 	//会员修改页面的
-	@RequestMapping(value = "/page/modifyMembershipAddrList.html")
+	@RequestMapping(value = "/page/modifyMembershipAddrList")
 	public ModelAndView modifyMembershipAddrList(Integer addr_id, @RequestParam(defaultValue = "0") Integer cps_id, String oppen_id, HttpSession session) {
 		Address address = new Address();
 		address.setOppen_id(getOppen_id(session));
@@ -155,7 +155,7 @@ public class AddressCtrl extends StringUtil{
 		return ml;
 	}
 
-	@RequestMapping(value = "/page/addrListTwo.html")
+	@RequestMapping(value = "/page/addrListTwo")
 	public ModelAndView listTwo(Integer goods_id, Integer goods_num, Integer addr_id, Integer cps_id, String oppen_id, HttpSession session) {
 		Address address = new Address();
 		address.setOppen_id(getOppen_id(session));
@@ -170,7 +170,7 @@ public class AddressCtrl extends StringUtil{
 		return ml;
 	}
 	
-	@RequestMapping(value = "/page/addressList.html")
+	@RequestMapping(value = "/page/addressList")
 	public ModelAndView addrList(String oppen_id, HttpSession session) {
 //		setOppen_id("111", session);//测试代码，模仿登录
 		Address address = new Address();
@@ -182,7 +182,7 @@ public class AddressCtrl extends StringUtil{
 		return ml;
 	}
 	
-	@RequestMapping(value = "/page/addrListById.html")
+	@RequestMapping(value = "/page/addrListById")
 	public ModelAndView listById(Integer addr_id) {
 		Address address = new Address();
 		address.setAddr_id(addr_id);

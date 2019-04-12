@@ -91,7 +91,7 @@
 		var sec_id = $('#sec_id').val();
 		var sec_name = $('#sec_name').val();
 		$.ajax({
-			url:'secUpdate.html',
+			url:'secUpdate',
 			type:'post',
 			data:'sec_name='+encodeURI(sec_name)+'&sec_id='+sec_id,
 			success:function(rs){

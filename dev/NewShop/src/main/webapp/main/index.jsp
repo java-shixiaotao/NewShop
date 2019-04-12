@@ -33,7 +33,7 @@ if(username==''){
 <title>米城-后台管理</title>
 </head>
 <body>
-<header class="Hui-header cl"> <a class="Hui-logo l" title="H-ui.admin v2.3" href="main.html">&nbsp;&nbsp;&nbsp;米城</a> <a style="width:60px" class="Hui-logo-m l" href="#" title="H-ui.admin">${admin.username }</a> <a class="Hui-logo-m l" href="login.jsp" title="H-ui.admin">退出</a> <span class="Hui-subtitle l">V1.1</span>
+<header class="Hui-header cl"> <a class="Hui-logo l" title="H-ui.admin v2.3" href="main">&nbsp;&nbsp;&nbsp;米城</a> <a style="width:60px" class="Hui-logo-m l" href="#" title="H-ui.admin">${admin.username }</a> <a class="Hui-logo-m l" href="login.jsp" title="H-ui.admin">退出</a> <span class="Hui-subtitle l">V1.1</span>
 
 	<ul class="Hui-userbar">
 
@@ -67,7 +67,7 @@ if(username==''){
 			<%--<dt><i class="Hui-iconfont">&#xe616;</i> 自提点管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>--%>
 			<%--<dd>--%>
 				<%--<ul>--%>
-					<%--<li><a _href="areaList.html?status=1&level=0" href="javascript:void(0)">自提点管理</a></li>--%>
+					<%--<li><a _href="areaList?status=1&level=0" href="javascript:void(0)">自提点管理</a></li>--%>
 				<%--</ul>--%>
 			<%--</dd>--%>
 		<%--</dl>--%>
@@ -75,8 +75,8 @@ if(username==''){
 			<dt><i class="Hui-iconfont">&#xe613;</i> 商品管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<%--<li><a _href="ctgList.html?status=1" href="javascript:void(0)">分类查看</a></li>--%>
-					<li><a _href="goodsList.html?status=1" href="javascript:void(0)">商品查看</a></li>
+					<%--<li><a _href="ctgList?status=1" href="javascript:void(0)">分类查看</a></li>--%>
+					<li><a _href="goodsList?status=1" href="javascript:void(0)">商品查看</a></li>
 				</ul>
 			</dd>
 		</dl>
@@ -84,7 +84,7 @@ if(username==''){
 			<dt><i class="Hui-iconfont">&#xe620;</i> 菜单管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a _href="menuList.html?status=1" href="javascript:void(0)"> 菜单查看</a></li>
+					<li><a _href="menuList?status=1" href="javascript:void(0)"> 菜单查看</a></li>
 				</ul>
 			</dd>
 		</dl> -->
@@ -92,7 +92,7 @@ if(username==''){
 			<%--<dt><i class="Hui-iconfont">&#xe620;</i> 轮图管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>--%>
 			<%--<dd>--%>
 				<%--<ul>--%>
-					<%--<li><a _href="banList.html?status=1" href="javascript:void(0)"> 轮图查看</a></li>--%>
+					<%--<li><a _href="banList?status=1" href="javascript:void(0)"> 轮图查看</a></li>--%>
 				<%--</ul>--%>
 			<%--</dd>--%>
 		<%--</dl>--%>
@@ -100,7 +100,7 @@ if(username==''){
 			<%--<dt><i class="Hui-iconfont">&#xe622;</i> 搜索管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>--%>
 			<%--<dd>--%>
 				<%--<ul>--%>
-					<%--<li><a _href="secList.html?status=1" href="javascript:;">搜索查看</a></li>--%>
+					<%--<li><a _href="secList?status=1" href="javascript:;">搜索查看</a></li>--%>
 				<%--</ul>--%>
 			<%--</dd>--%>
 		<%--</dl>--%>
@@ -108,7 +108,7 @@ if(username==''){
 			<%--<dt><i class="Hui-iconfont">&#xe622;</i> 运费管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>--%>
 			<%--<dd>--%>
 				<%--<ul>--%>
-					<%--<li><a _href="fgtList.html" href="javascript:;">运费查看</a></li>--%>
+					<%--<li><a _href="fgtList" href="javascript:;">运费查看</a></li>--%>
 				<%--</ul>--%>
 			<%--</dd>--%>
 		<%--</dl>--%>
@@ -116,7 +116,7 @@ if(username==''){
 			<%--<dt><i class="Hui-iconfont">&#xe622;</i> 优惠券管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>--%>
 			<%--<dd>--%>
 				<%--<ul>--%>
-					<%--<li><a _href="cpsList.html" href="javascript:;">优惠券查看</a></li>--%>
+					<%--<li><a _href="cpsList" href="javascript:;">优惠券查看</a></li>--%>
 				<%--</ul>--%>
 			<%--</dd>--%>
 		<%--</dl>--%>
@@ -124,10 +124,10 @@ if(username==''){
 			<dt><i class="Hui-iconfont">&#xe622;</i> 兑换券管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a _href="templateList.html" href="javascript:;">兑换券模板</a></li>
+					<li><a _href="templateList" href="javascript:;">兑换券模板</a></li>
 				</ul>
 				<ul>
-					<li><a _href="templategiftList.html" href="javascript:;">兑换券查看</a></li>
+					<li><a _href="templategiftList" href="javascript:;">兑换券查看</a></li>
 				</ul>
 			</dd>
 		</dl>
@@ -137,7 +137,7 @@ if(username==''){
 			<dt><i class="Hui-iconfont">&#xe622;</i> 订单管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a _href="orderList.html" href="javascript:;">订单查看</a></li>
+					<li><a _href="orderList" href="javascript:;">订单查看</a></li>
 				</ul>
 			</dd>
 		</dl>
@@ -146,7 +146,7 @@ if(username==''){
 			<dt><i class="Hui-iconfont">&#xe622;</i> 快递管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a _href="exp_list.html" href="javascript:;">快递查看</a></li>
+					<li><a _href="exp_list" href="javascript:;">快递查看</a></li>
 				</ul>
 			</dd>
 		</dl>
@@ -154,7 +154,7 @@ if(username==''){
 			<dt><i class="Hui-iconfont">&#xe622;</i> 会员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a _href="userList.html" href="javascript:;">会员查看</a></li>
+					<li><a _href="userList" href="javascript:;">会员查看</a></li>
 				</ul>
 			</dd>
 		</dl>
@@ -162,10 +162,10 @@ if(username==''){
 			<dt><i class="Hui-iconfont">&#xe616;</i> 公众平台<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a _href="buttonList.html" href="javascript:void(0)">菜单管理</a></li>
-					<li><a _href="wxSettingList.html" href="javascript:void(0)">参数设置</a></li>
-					<li><a _href="replyById.html?ct_key=subscribe" href="javascript:void(0)">关注回复</a></li>
-					<li><a _href="reply_list.html" href="javascript:void(0)">回复事件</a></li>
+					<li><a _href="buttonList" href="javascript:void(0)">菜单管理</a></li>
+					<li><a _href="wxSettingList" href="javascript:void(0)">参数设置</a></li>
+					<li><a _href="replyById?ct_key=subscribe" href="javascript:void(0)">关注回复</a></li>
+					<li><a _href="reply_list" href="javascript:void(0)">回复事件</a></li>
 				</ul>
 			</dd>
 		</dl>

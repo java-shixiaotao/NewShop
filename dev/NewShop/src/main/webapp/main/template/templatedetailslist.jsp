@@ -85,7 +85,7 @@
 		return ;
 		}
 		$.ajax({
-			url:'goodsUpstatus.html',
+			url:'goodsUpstatus',
 			type:'post',
 			data:'goods_id='+goods_id+'&status=0',
 			success:function(rs){

@@ -22,7 +22,7 @@ public class AdminController {
 	Map<String, Object> map = new HashMap<String, Object>();
 
 	@ResponseBody
-	@RequestMapping(value = "isExist.html")
+	@RequestMapping(value = "isExist")
 	public String isExist(String username, String password, HttpSession session) {
 		map.put("username", username);
 		map.put("password",MD5Util.MD5Encode(password,""));
@@ -39,7 +39,7 @@ public class AdminController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "update.html")
+	@RequestMapping(value = "update")
 	public String update(String password, String password2, HttpSession session) {
 		int  admin_id = 0 ;
 		if(session.getAttribute("admin")!=null){
@@ -58,7 +58,7 @@ public class AdminController {
 		return rs ;
 	}
 //	@ResponseBody
-//	@RequestMapping(value = "update.html")
+//	@RequestMapping(value = "update")
 //	public String listById(){
 //		map.put("admin_id", 1);
 //		return adminService.listById(map);

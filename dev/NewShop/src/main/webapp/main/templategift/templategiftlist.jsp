@@ -51,13 +51,13 @@
 			<script type="text/javascript">
 				function search() {
 					var template_name =$('#template_name').val();
-					window.location.href = 'templategiftList.html?templateName=' + encodeURIComponent(encodeURIComponent(template_name));
+					window.location.href = 'templategiftList?templateName=' + encodeURIComponent(encodeURIComponent(template_name));
 				}
 			</script>
 		</div>
 	<div class="pd-20">
 		<div class="cl pd-5 bg-1 bk-gray mt-20">
-			<span class="l"> <a href="templategiftAdd.html"
+			<span class="l"> <a href="templategiftAdd"
 				class="btn btn-primary radius"> <i class="Hui-iconfont">&#xe600;</i>
 					添加兑换券
 			</a></span>
@@ -84,9 +84,9 @@
 							<td>${list.num}</td>
 							<td>${list.createTime}</td>
 							<td>
-								<a href="templategiftdetailListById.html?tgID=${list.tgID}">详情</a>&nbsp;&nbsp;
+								<a href="templategiftdetailListById?tgID=${list.tgID}">详情</a>&nbsp;&nbsp;
 
-							    <a href="templategiftdetaildownload.html?tgID=${list.tgID}">下载</a>&nbsp;&nbsp;
+							    <a href="templategiftdetaildownload?tgID=${list.tgID}">下载</a>&nbsp;&nbsp;
 							</td>					
 						</tr>
 					</c:forEach>
@@ -100,7 +100,7 @@
 
     function download(tgID){
             $.ajax({
-                url: 'templategiftdetaildownload.html',
+                url: 'templategiftdetaildownload',
                 type: 'post',
 				data:'tgID=' + tgID,
                 success: function (rs) {
@@ -114,7 +114,7 @@
 		return ;
 		}
 		$.ajax({
-			url:'templateUpstatus.html',
+			url:'templateUpstatus',
 			type:'post',
 			data:'template_id='+template_id,
 			success:function(rs){
@@ -139,7 +139,7 @@
 		return ;
 		}
 		$.ajax({
-			url:'goodsUpisrec.html',
+			url:'goodsUpisrec',
 			type:'post',
 			data:'goods_id='+goods_id+'&is_recommend='+is_recommend,
 			success:function(rs){
@@ -157,30 +157,30 @@
 	var totalPage = '${totalPage}';
 	function upPage() {
 		if (currentPage > 1) {
-			window.location.href = 'goodsList.html?currentPage='
+			window.location.href = 'goodsList?currentPage='
 					+ (parseInt(currentPage) - 1)+'&status=1&goods_name=' + encodeURIComponent(encodeURIComponent(goods_name));
 			return;
 		}
 	}
 	function downPage() {
 		if (parseInt(currentPage) < parseInt(totalPage)) {
-			window.location.href = 'goodsList.html?currentPage='
+			window.location.href = 'goodsList?currentPage='
 					+ (parseInt(currentPage) + 1)+'&status=1&goods_name=' + encodeURIComponent(encodeURIComponent(goods_name));
 			return;
 		}
 	}
 	function fpage() {
-		window.location.href = 'goodsList.html?currentPage=1'+'&status=1&goods_name=' + encodeURIComponent(encodeURIComponent(goods_name));
+		window.location.href = 'goodsList?currentPage=1'+'&status=1&goods_name=' + encodeURIComponent(encodeURIComponent(goods_name));
 		return;
 	}
 	function epage() {
-		window.location.href = 'goodsList.html?currentPage=' + totalPage+'&status=1&goods_name=' + encodeURIComponent(encodeURIComponent(goods_name));
+		window.location.href = 'goodsList?currentPage=' + totalPage+'&status=1&goods_name=' + encodeURIComponent(encodeURIComponent(goods_name));
 		return;
 	}
 	function spage() {
 		var seastr =$('#seastr').val();
 		if (parseInt(seastr)< parseInt(totalPage)||parseInt(seastr)== parseInt(totalPage)) {
-		window.location.href = 'goodsList.html?currentPage=' + seastr+'&status=1&goods_name=' + encodeURIComponent(encodeURIComponent(goods_name));
+		window.location.href = 'goodsList?currentPage=' + seastr+'&status=1&goods_name=' + encodeURIComponent(encodeURIComponent(goods_name));
 		}
 		return;
 	}

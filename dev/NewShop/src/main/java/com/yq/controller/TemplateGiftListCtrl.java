@@ -30,7 +30,7 @@ public class TemplateGiftListCtrl extends StringUtil {
     @Autowired
     private TemplateService templateService;
 
-    @RequestMapping(value = "/main/templategiftdetailListById.html")
+    @RequestMapping(value = "/main/templategiftdetailListById")
     public ModelAndView listById(Integer tgID) {
         TemplateGiftDetail temg=new TemplateGiftDetail();
         temg.setTgID(tgID);
@@ -46,7 +46,7 @@ public class TemplateGiftListCtrl extends StringUtil {
      * @param tgID
      * @return
      */
-    @RequestMapping(value = "/main/templategiftdetaildownload.html")
+    @RequestMapping(value = "/main/templategiftdetaildownload")
     public ResponseEntity<byte[]> download(Integer tgID, HttpServletRequest request, HttpServletResponse response) throws Exception{
         TemplateGiftDetail temg=new TemplateGiftDetail();
         temg.setTgID(tgID);
@@ -54,7 +54,7 @@ public class TemplateGiftListCtrl extends StringUtil {
 
     }
 
-    @RequestMapping(value = "/main/templategiftList.html")
+    @RequestMapping(value = "/main/templategiftList")
     public ModelAndView list(@RequestParam(defaultValue = "") String templateName,
                              @RequestParam(defaultValue = "1") Integer currentPage,
                              HttpServletRequest request)throws UnsupportedEncodingException {
@@ -76,7 +76,7 @@ public class TemplateGiftListCtrl extends StringUtil {
         return ml;
     }
 
-    @RequestMapping(value = "/main/templategiftAdd.html")
+    @RequestMapping(value = "/main/templategiftAdd")
     public ModelAndView addjsp() {
         ModelAndView ml = new ModelAndView();
         Goods goods = new Goods();
@@ -88,7 +88,7 @@ public class TemplateGiftListCtrl extends StringUtil {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/main/templategiftInsert.html")
+    @RequestMapping(value = "/main/templategiftInsert")
     public String insert(String template_id, String num, String templateName) throws Exception  {
         Map<String, Object> map = new HashMap<String, Object>();
         SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

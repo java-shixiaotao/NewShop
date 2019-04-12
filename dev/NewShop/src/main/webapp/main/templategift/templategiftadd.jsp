@@ -157,7 +157,7 @@
             &&num!= "undefined" && num != null && num != ""&&template_numspan==""&&template_namespan==""){
             spanclear()
             $.ajax({
-                url: 'templategiftInsert.html',
+                url: 'templategiftInsert',
                 type: 'post',
                 data: 'template_id=' + template_id + '&num='
                 + num+"&templateName="+templateName,

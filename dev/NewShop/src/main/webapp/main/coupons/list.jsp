@@ -37,7 +37,7 @@
 	</nav>
 	<div class="pd-20">
 		<div class="cl pd-5 bg-1 bk-gray mt-20">
-			<span class="l"> <a href="cpsAddjsp.html"
+			<span class="l"> <a href="cpsAddjsp"
 				class="btn btn-primary radius"> <i class="Hui-iconfont">&#xe600;</i>
 					添加记录
 			</a></span>
@@ -69,7 +69,7 @@
 							<td>${list.cps_code}</td>
 							<td>${list.cps_time}</td>
 							<td>
-							<a href="cpsListById.html?cps_id=${list.cps_id}">编辑</a>&nbsp;&nbsp;
+							<a href="cpsListById?cps_id=${list.cps_id}">编辑</a>&nbsp;&nbsp;
 							<a href="javascript:;" onclick="del('${list.cps_id}')">删除</a></td>					
 						</tr>
 					</c:forEach>
@@ -113,7 +113,7 @@
 		return ;
 		}
 		$.ajax({
-			url:'cpsDelete.html',
+			url:'cpsDelete',
 			type:'post',
 			data:'cps_id='+cps_id,
 			success:function(rs){
@@ -130,30 +130,30 @@
 	var totalPage = '${totalPage}';
 	function upPage() {
 		if (currentPage > 1) {
-			window.location.href = 'cpsList.html?currentPage='
+			window.location.href = 'cpsList?currentPage='
 					+ (parseInt(currentPage) - 1)+'&status=1';
 			return;
 		}
 	}
 	function downPage() {
 		if (parseInt(currentPage) < parseInt(totalPage)) {
-			window.location.href = 'cpsList.html?currentPage='
+			window.location.href = 'cpsList?currentPage='
 					+ (parseInt(currentPage) + 1)+'&status=1';
 			return;
 		}
 	}
 	function fpage() {
-		window.location.href = 'cpsList.html?currentPage=1'+'&status=1';
+		window.location.href = 'cpsList?currentPage=1'+'&status=1';
 		return;
 	}
 	function epage() {
-		window.location.href = 'cpsList.html?currentPage=' + totalPage+'&status=1';
+		window.location.href = 'cpsList?currentPage=' + totalPage+'&status=1';
 		return;
 	}
 	function spage() {
 		var seastr =$('#seastr').val();
 		if (parseInt(seastr)< parseInt(totalPage)||parseInt(seastr)== parseInt(totalPage)) {
-		window.location.href = 'cpsList.html?currentPage=' + seastr+'&status=1';
+		window.location.href = 'cpsList?currentPage=' + seastr+'&status=1';
 		}
 		return;
 	}

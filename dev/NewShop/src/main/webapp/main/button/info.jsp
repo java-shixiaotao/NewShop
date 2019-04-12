@@ -78,7 +78,7 @@
 		var value=$('#value').val();
 	
 		$.ajax({
-			url:'buttonUpdate.html',
+			url:'buttonUpdate',
 			type:'post',
 			data:'id='+id+'&name='+name+'&value='+value,
 			success:function(rs){

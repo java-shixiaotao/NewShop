@@ -37,7 +37,7 @@
 	</nav>
 	<div class="pd-20">
 		<div class="cl pd-5 bg-1 bk-gray mt-20">
-			<span class="l"> <a href="secAddjsp.html"
+			<span class="l"> <a href="secAddjsp"
 				class="btn btn-primary radius"> <i class="Hui-iconfont">&#xe600;</i>
 					添加记录
 			</a></span>
@@ -65,7 +65,7 @@
 							class="input-text" onblur="sort('${list.sec_id}','sort${s.index}')"></td>
 							<td>${list.sec_name}</td>
 							<td>
-							<a href="secListById.html?sec_id=${list.sec_id}">编辑</a>&nbsp;&nbsp;
+							<a href="secListById?sec_id=${list.sec_id}">编辑</a>&nbsp;&nbsp;
 							<a href="javascript:;" onclick="del('${list.sec_id}')">删除</a></td>					
 						</tr>
 					</c:forEach>
@@ -82,7 +82,7 @@
 		return ;
 		}
 		$.ajax({
-			url:'secUpstatus.html',
+			url:'secUpstatus',
 			type:'post',
 			data:'sec_id='+sec_id+'&status=0',
 			success:function(rs){
@@ -98,7 +98,7 @@
 	function sort(id,sort){
 		var str = $('#'+sort).val();
 		$.ajax({
-			url:'secSort.html',
+			url:'secSort',
 			type:'post',
 			data:'sort='+str+'&sec_id='+id,
 			success:function(rs){
@@ -109,30 +109,30 @@
 	var totalPage = '${totalPage}';
 	function upPage() {
 		if (currentPage > 1) {
-			window.location.href = 'secList.html?currentPage='
+			window.location.href = 'secList?currentPage='
 					+ (parseInt(currentPage) - 1)+'&status=1';
 			return;
 		}
 	}
 	function downPage() {
 		if (parseInt(currentPage) < parseInt(totalPage)) {
-			window.location.href = 'secList.html?currentPage='
+			window.location.href = 'secList?currentPage='
 					+ (parseInt(currentPage) + 1)+'&status=1';
 			return;
 		}
 	}
 	function fpage() {
-		window.location.href = 'secList.html?currentPage=1'+'&status=1';
+		window.location.href = 'secList?currentPage=1'+'&status=1';
 		return;
 	}
 	function epage() {
-		window.location.href = 'secList.html?currentPage=' + totalPage+'&status=1';
+		window.location.href = 'secList?currentPage=' + totalPage+'&status=1';
 		return;
 	}
 	function spage() {
 		var seastr =$('#seastr').val();
 		if (parseInt(seastr)< parseInt(totalPage)||parseInt(seastr)== parseInt(totalPage)) {
-		window.location.href = 'secList.html?currentPage=' + seastr+'&status=1';
+		window.location.href = 'secList?currentPage=' + seastr+'&status=1';
 		}
 		return;
 	}

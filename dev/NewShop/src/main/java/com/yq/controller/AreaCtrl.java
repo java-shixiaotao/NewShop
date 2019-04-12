@@ -23,12 +23,12 @@ public class AreaCtrl {
 	private AreaService areaService;
 	private static Gson gson=new Gson();
 
-	@RequestMapping(value = "main/areaAddjsp.html")
+	@RequestMapping(value = "main/areaAddjsp")
 	public ModelAndView addjsp() {
 		return new ModelAndView("main/area/add");
 	}
 	
-	@RequestMapping(value = "main/addrAddjsp.html")
+	@RequestMapping(value = "main/addrAddjsp")
 	public ModelAndView addrAddjsp(Integer area_id) {
 		ModelAndView ml = new ModelAndView();
 		ml.addObject("area_id", area_id);
@@ -36,7 +36,7 @@ public class AreaCtrl {
 		return ml;
 	}
 	@ResponseBody
-	@RequestMapping(value = "main/areaInsert.html")
+	@RequestMapping(value = "main/areaInsert")
 	public String insert(String area_name, Integer level, Integer status,
 			Integer sort) throws UnsupportedEncodingException {
 			area_name = java.net.URLDecoder.decode(area_name,"utf-8") ;
@@ -48,7 +48,7 @@ public class AreaCtrl {
 			return gson.toJson(areaService.insert(map));
 	}
 	@ResponseBody
-	@RequestMapping(value = "main/areaUpdate.html")
+	@RequestMapping(value = "main/areaUpdate")
 	public Object update(Integer area_id,String area_name) throws UnsupportedEncodingException {
 		area_name = java.net.URLDecoder.decode(area_name,"utf-8") ;
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -58,7 +58,7 @@ public class AreaCtrl {
 		
 	}
 	@ResponseBody
-	@RequestMapping(value = "main/areaUpstatus.html")
+	@RequestMapping(value = "main/areaUpstatus")
 	public Object upstatus(Integer area_id,Integer status) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("status", status);
@@ -68,7 +68,7 @@ public class AreaCtrl {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "main/areaSort.html")
+	@RequestMapping(value = "main/areaSort")
 	public Object sort(Integer area_id,Integer sort) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("sort", sort);
@@ -77,7 +77,7 @@ public class AreaCtrl {
 		
 	}
 	
-	@RequestMapping(value = "main/areaList.html")
+	@RequestMapping(value = "main/areaList")
 	public ModelAndView list(Integer status, Integer level) {
 		Area area= new Area();
 		area.setStatus(status);
@@ -94,7 +94,7 @@ public class AreaCtrl {
 		return ml;
 	}
 	
-	@RequestMapping(value = "page/areaList.html")
+	@RequestMapping(value = "page/areaList")
 	public ModelAndView areaList(Integer status, Integer level) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		ModelAndView ml = new ModelAndView();
@@ -114,7 +114,7 @@ public class AreaCtrl {
 	}
 	
 	
-	@RequestMapping(value = "main/areaListById.html")
+	@RequestMapping(value = "main/areaListById")
 	public ModelAndView listById(Integer area_id) {
 		Area area= new Area();
 		area.setArea_id(area_id);
@@ -125,7 +125,7 @@ public class AreaCtrl {
 		return ml;
 	}
 	@ResponseBody
-	@RequestMapping(value = "page/areaJson.html")
+	@RequestMapping(value = "page/areaJson")
 	public void areaJson(Integer level, HttpServletResponse response) {
 		try {
 		Area area= new Area();

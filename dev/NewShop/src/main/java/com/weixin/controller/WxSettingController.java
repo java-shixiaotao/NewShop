@@ -25,7 +25,7 @@ public class WxSettingController {
 	Map<String,Object> map = new HashMap<String, Object>();
 	Gson gson = new Gson();
 	@ResponseBody
-	@RequestMapping(value="/main/wxSettingUpdate.html")
+	@RequestMapping(value="/main/wxSettingUpdate")
 	public String update(WxSetting wxSetting){
 		wxSetting.setId(1);
 		int rs  =	wxSettingService.updateByPrimaryKeySelective(wxSetting);
@@ -36,7 +36,7 @@ public class WxSettingController {
 		return gson.toJson(map);
 	}
 	
-	@RequestMapping(value="/main/wxSettingList.html")
+	@RequestMapping(value="/main/wxSettingList")
 	public ModelAndView getList(ModelAndView ml){
 		ml.addObject("list",wxSettingService.selectByPrimaryKey(1));
 		ml.setViewName("main/setting/info");

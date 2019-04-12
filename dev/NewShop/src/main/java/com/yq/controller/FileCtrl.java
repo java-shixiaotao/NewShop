@@ -26,7 +26,7 @@ public class FileCtrl {
 	@Autowired
 	private GoodsPicService goodsPicService;
 	@ResponseBody
-	@RequestMapping(value="/upload.html")
+	@RequestMapping(value="/upload")
 	public Object upload(@RequestParam MultipartFile file, HttpServletRequest request){
 			String realpath = request.getSession().getServletContext().getRealPath(""); 
 			String path = realpath+"/upload";
@@ -66,7 +66,7 @@ public class FileCtrl {
 //	        if(StringUtils.isNotEmpty(link)){
 //	        	link = link.replace("/chihaodian", "");
 //	        }
-	        String url = "/getPic.html?filename="+fileName;
+	        String url = "/getPic?filename="+fileName;
 //	        StringBuffer url = request.getRequestURL();  
 //			String tempContextUrl = url.delete(url.length() - request.getRequestURI().length(), url.length()).append("/").append("upload/")
 //					.append(fileName).toString();

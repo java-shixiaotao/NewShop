@@ -99,7 +99,7 @@
 		var partnerkey=$('#partnerkey').val();
 		
 		$.ajax({
-			url:'wxSettingUpdate.html',
+			url:'wxSettingUpdate',
 			type:'post',
 			data:'appid='+appid+'&appsecret='+appsecret+'&link='+encodeURIComponent(link)+'&partner='+partner+'&partnerkey='+partnerkey,
 			success:function(rs){

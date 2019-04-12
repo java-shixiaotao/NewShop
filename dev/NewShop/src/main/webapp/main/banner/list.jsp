@@ -38,7 +38,7 @@
 	<br>
 	<div class="pd-20">
 		<div class="cl pd-5 bg-1 bk-gray mt-20">
-			<span class="l"> <a href="banAddjsp.html"
+			<span class="l"> <a href="banAddjsp"
 				class="btn btn-primary radius"> <i class="Hui-iconfont">&#xe600;</i>
 					添加记录
 			</a></span>
@@ -72,7 +72,7 @@
 							</td>
 							<td><img alt="" src="${list.ban_img}" width="50" height="50"> </td>
 							<td>
-							<a href="banListById.html?ban_id=${list.ban_id}">编辑</a>&nbsp;&nbsp;
+							<a href="banListById?ban_id=${list.ban_id}">编辑</a>&nbsp;&nbsp;
 							<a href="javascript:;" onclick="del('${list.ban_id}')">删除</a></td>					
 						</tr>
 					</c:forEach>
@@ -88,7 +88,7 @@
 		return ;
 		}
 		$.ajax({
-			url:'banUpstatus.html',
+			url:'banUpstatus',
 			type:'post',
 			data:'ban_id='+ban_id+'&status=0',
 			success:function(rs){
@@ -104,7 +104,7 @@
 	function sort(id,sort){
 		var str = $('#'+sort).val();
 		$.ajax({
-			url:'banSort.html',
+			url:'banSort',
 			type:'post',
 			data:'sort='+str+'&ban_id='+id,
 			success:function(rs){

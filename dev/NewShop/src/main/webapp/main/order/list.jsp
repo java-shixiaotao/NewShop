@@ -67,7 +67,7 @@
 					var ctg_name =$('#ctg_name').val();
 					var goods_name =$('#goods_name').val();
 					var addr_name =$('#addr_name').val();
-					window.location.href = 'orderList.html?start_time=' + encodeURIComponent(encodeURIComponent(start_time))
+					window.location.href = 'orderList?start_time=' + encodeURIComponent(encodeURIComponent(start_time))
 					+ '&end_time=' + encodeURIComponent(encodeURIComponent(end_time))+ '&ctg_name=' + encodeURIComponent(encodeURIComponent(ctg_name))
 					+ '&goods_name=' + encodeURIComponent(encodeURIComponent(goods_name))+ '&addr_name=' + encodeURIComponent(encodeURIComponent(addr_name))
 					+ '&status=' + status;
@@ -76,23 +76,23 @@
 		</div>
 	<div class="pd-20">
 		<div class="cl pd-5 bg-1 bk-gray mt-20">
-			<span class="l"> <a href="orderList.html"
+			<span class="l"> <a href="orderList"
 				class="btn btn-primary radius"> <i class="Hui-iconfont"></i>
 					全部
 			</a>
-			<a href="orderList.html?status=1"
+			<a href="orderList?status=1"
 				class="btn btn-primary radius"> <i class="Hui-iconfont"></i>
 					待发货
 			</a>
-			<a href="orderList.html?status=2"
+			<a href="orderList?status=2"
 				class="btn btn-primary radius"> <i class="Hui-iconfont"></i>
 					已发货
 			</a>
-			<a href="orderList.html?status=-5"
+			<a href="orderList?status=-5"
 				class="btn btn-primary radius"> <i class="Hui-iconfont"></i>
 					待退款
 			</a>
-			<a href="orderList.html?status=-6"
+			<a href="orderList?status=-6"
 				class="btn btn-primary radius"> <i class="Hui-iconfont"></i>
 					已关闭
 			</a>
@@ -160,13 +160,13 @@
 							
 							<td class="text-c">
 							<c:if test="${list.status==1||list.status==2 }">
-							<a href="exp_choose.html?order_id=${list.order_id}" >发货</a><br>
+							<a href="exp_choose?order_id=${list.order_id}" >发货</a><br>
 							</c:if>
 							<c:if test="${list.status!=1 &&list.status!=2 }">
 							<a href="javascript:;" onclick="alert('未支付或已发货！')">发货</a>
 							</c:if>
 							
-							<%-- <c:if test="${list.status==1 }"><a href="exp_choose.html?order_id=${list.order_id}" >发货</a><br></c:if>
+							<%-- <c:if test="${list.status==1 }"><a href="exp_choose?order_id=${list.order_id}" >发货</a><br></c:if>
 							<c:if test="${list.status!=1 }"><a href="javascript:;" onclick="alert('未支付或已发货！')">发货</a><br></c:if> --%>
 							
 							<c:if test="${list.status==-5 }"><a href="javascript:;" onclick="refund('${list.order_id}')">退款</a><br></c:if>
@@ -214,7 +214,7 @@
 	function tp(order_id,index){
 		var total = $('#'+index).val();
 		$.ajax({
-			url:'orderprice.html',
+			url:'orderprice',
 			type:'post',
 			data:'order_id='+order_id+'&goods_total='+total,
 			success:function(rs){
@@ -235,7 +235,7 @@
 		return ;
 		}
 		$.ajax({
-			url:'orderDel.html',
+			url:'orderDel',
 			type:'post',
 			data:'order_id='+order_id,
 			success:function(rs){
@@ -254,7 +254,7 @@
 		return ;
 		}
 		$.ajax({
-			url:'orderUpstatus.html',
+			url:'orderUpstatus',
 			type:'post',
 			data:'order_id='+order_id+'&status=-6',
 			success:function(rs){
@@ -270,7 +270,7 @@
 	function send(order_id){
 		
 		$.ajax({
-			url:'orderUpstatus.html',
+			url:'orderUpstatus',
 			type:'post',
 			data:'order_id='+order_id+'&status=2',
 			success:function(rs){
@@ -293,7 +293,7 @@
 	var status = '${status}';
 	function upPage() {
 		if (currentPage > 1) {
-			window.location.href = 'orderList.html?currentPage='
+			window.location.href = 'orderList?currentPage='
 					+ (parseInt(currentPage) - 1)+'&status='+status+'&start_time=' + encodeURIComponent(encodeURIComponent(start_time))
 						+ '&end_time=' + encodeURIComponent(encodeURIComponent(end_time))+ '&ctg_name=' + encodeURIComponent(encodeURIComponent(ctg_name))
 						+ '&goods_name=' + encodeURIComponent(encodeURIComponent(goods_name))+ '&addr_name=' + encodeURIComponent(encodeURIComponent(addr_name));
@@ -302,7 +302,7 @@
 	}
 	function downPage() {
 		if (parseInt(currentPage) < parseInt(totalPage)) {
-			window.location.href = 'orderList.html?currentPage='
+			window.location.href = 'orderList?currentPage='
 					+ (parseInt(currentPage) + 1)+'&status='+status+'&start_time=' + encodeURIComponent(encodeURIComponent(start_time))
 					+ '&end_time=' + encodeURIComponent(encodeURIComponent(end_time))+ '&ctg_name=' + encodeURIComponent(encodeURIComponent(ctg_name))
 					+ '&goods_name=' + encodeURIComponent(encodeURIComponent(goods_name))+ '&addr_name=' + encodeURIComponent(encodeURIComponent(addr_name));;
@@ -310,13 +310,13 @@
 		}
 	}
 	function fpage() {
-		window.location.href = 'orderList.html?currentPage=1'+'&status='+status+'&start_time=' + encodeURIComponent(encodeURIComponent(start_time))
+		window.location.href = 'orderList?currentPage=1'+'&status='+status+'&start_time=' + encodeURIComponent(encodeURIComponent(start_time))
 		+ '&end_time=' + encodeURIComponent(encodeURIComponent(end_time))+ '&ctg_name=' + encodeURIComponent(encodeURIComponent(ctg_name))
 		+ '&goods_name=' + encodeURIComponent(encodeURIComponent(goods_name))+ '&addr_name=' + encodeURIComponent(encodeURIComponent(addr_name));
 		return;
 	}
 	function epage() {
-		window.location.href = 'orderList.html?currentPage=' + totalPage+'&status='+status+'&start_time=' + encodeURIComponent(encodeURIComponent(start_time))
+		window.location.href = 'orderList?currentPage=' + totalPage+'&status='+status+'&start_time=' + encodeURIComponent(encodeURIComponent(start_time))
 		+ '&end_time=' + encodeURIComponent(encodeURIComponent(end_time))+ '&ctg_name=' + encodeURIComponent(encodeURIComponent(ctg_name))
 		+ '&goods_name=' + encodeURIComponent(encodeURIComponent(goods_name))+ '&addr_name=' + encodeURIComponent(encodeURIComponent(addr_name));
 		return;
@@ -324,7 +324,7 @@
 	function spage() {
 		var seastr =$('#seastr').val();
 		if (parseInt(seastr)< parseInt(totalPage)||parseInt(seastr)== parseInt(totalPage)) {
-		window.location.href = 'orderList.html?currentPage=' + seastr+'&status='+status+'&start_time=' + encodeURIComponent(encodeURIComponent(start_time))
+		window.location.href = 'orderList?currentPage=' + seastr+'&status='+status+'&start_time=' + encodeURIComponent(encodeURIComponent(start_time))
 		+ '&end_time=' + encodeURIComponent(encodeURIComponent(end_time))+ '&ctg_name=' + encodeURIComponent(encodeURIComponent(ctg_name))
 		+ '&goods_name=' + encodeURIComponent(encodeURIComponent(goods_name))+ '&addr_name=' + encodeURIComponent(encodeURIComponent(addr_name));
 		}

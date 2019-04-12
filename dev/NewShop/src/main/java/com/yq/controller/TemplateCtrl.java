@@ -36,7 +36,7 @@ public class TemplateCtrl extends StringUtil {
      * @param template_id
      * @return
      */
-    @RequestMapping(value = "/main/templateListById.html")
+    @RequestMapping(value = "/main/templateListById")
     public ModelAndView listById(String template_id) {
         Template tem=new Template();
         tem.setTemplate_id(Integer.parseInt(template_id));
@@ -62,7 +62,7 @@ public class TemplateCtrl extends StringUtil {
      * @throws UnsupportedEncodingException
      */
     @ResponseBody
-    @RequestMapping(value = "/main/templateInsert.html")
+    @RequestMapping(value = "/main/templateInsert")
     public String insert(String templateName, String goods_id,String goods_name,String goods_img,
                          String goods_num,String goods_spe,String goods_price,Float goods_total_num,
                          Float goods_total) throws UnsupportedEncodingException  {
@@ -92,7 +92,7 @@ public class TemplateCtrl extends StringUtil {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "/main/templateUpstatus.html")
+    @RequestMapping(value = "/main/templateUpstatus")
     public Object upstatus(Integer template_id) {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("template_id", template_id);
@@ -108,7 +108,7 @@ public class TemplateCtrl extends StringUtil {
      * @return
      * @throws UnsupportedEncodingException
      */
-    @RequestMapping(value = "/main/templateList.html")
+    @RequestMapping(value = "/main/templateList")
     public ModelAndView list(Integer status, @RequestParam(defaultValue = "") String templateName,
                              @RequestParam(defaultValue = "1") Integer currentPage,
                              HttpServletRequest request)throws UnsupportedEncodingException {
@@ -135,7 +135,7 @@ public class TemplateCtrl extends StringUtil {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "/main/goodsListByCtgid.html")
+    @RequestMapping(value = "/main/goodsListByCtgid")
     public  Map<String,Object>  listByCtgid(HttpServletRequest req) {
         Integer ctg_id=Integer.parseInt(req.getParameter("ctg_id").toString());
         Map<String,Object> map = new HashMap<>();
@@ -150,7 +150,7 @@ public class TemplateCtrl extends StringUtil {
      * 跳转到新增模板界面
      * @return
      */
-    @RequestMapping(value = "/main/templateAdd.html")
+    @RequestMapping(value = "/main/templateAdd")
     public ModelAndView addjsp() {
         ModelAndView ml = new ModelAndView();
         Goods goods = new Goods();

@@ -87,7 +87,7 @@
 		var password2 = $('#password2').val();
 
 		$.ajax({
-			url:'../admin/update.html',
+			url:'../admin/update',
 			type:'post',
 			data:'password='+password+'&password2='+password2,
 			success:function(rs){

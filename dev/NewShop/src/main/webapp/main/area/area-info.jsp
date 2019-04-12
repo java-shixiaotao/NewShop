@@ -66,7 +66,7 @@
 		var area_id = $('#area_id').val();
 		var area_name = $('#area_name').val();
 		$.ajax({
-			url:'areaUpdate.html',
+			url:'areaUpdate',
 			type:'post',
 			data:'area_name='+encodeURI(area_name)+'&area_id='+area_id,
 			success:function(rs){

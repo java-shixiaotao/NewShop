@@ -88,7 +88,7 @@
 	function add(){
 		var sec_name = $('#sec_name').val();
 		$.ajax({
-			url:'secInsert.html',
+			url:'secInsert',
 			type:'post',
 			data:'sec_name='+encodeURI(sec_name),
 			success:function(rs){

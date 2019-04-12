@@ -109,7 +109,7 @@
 		var value=$('#value').val();
 		var type = 'view';
 		$.ajax({
-			url:'buttonInsert.html',
+			url:'buttonInsert',
 			type:'post',
 			data:'level='+level+'&super_id='+super_id+'&type='+type+'&name='+name+'&value='+value,
 			success:function(rs){

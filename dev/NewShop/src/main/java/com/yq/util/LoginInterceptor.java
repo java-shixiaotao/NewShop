@@ -21,8 +21,8 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 //	public static final String appsecret = "cbcef8220cf134c1de794b81bafd52af";
 	private Logger log = Logger.getLogger(getClass());
 			
-	private static final String[] IGNORE_URI = { "/login.jsp", "/Login/", "/reply.html", "/main/", "/admin/", "/userInsert.html",
-			"/oauth2/", "/noticeOrder.html" ,"/getPic"};
+	private static final String[] IGNORE_URI = { "/login.jsp", "/Login/", "/reply", "/main/", "/admin/", "/userInsert",
+			"/oauth2/", "/noticeOrder" ,"/getPic"};
 	Gson gson=new Gson();
 	Map<String, Object> map = new HashMap<String, Object>();
 	@Override
@@ -55,16 +55,16 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 //				log.info("不是ajax -- 进入--->>>");
 //				System.out.println("wxSetting.getAppid()=="+wxSetting.getAppid());
 ////				response.sendRedirect(
-////						"https://open.weixin.qq.com/connect/oauth2/authorize?appid="+wxSetting.getAppid()+"&redirect_uri="+wxSetting.getLink()+"/page/userInsert.html?url="
+////						"https://open.weixin.qq.com/connect/oauth2/authorize?appid="+wxSetting.getAppid()+"&redirect_uri="+wxSetting.getLink()+"/page/userInsert?url="
 ////								+ url
 ////								+ "&response_type=code&scope=snsapi_userinfo&state=STATE&connect_redirect=1#wechat_redirect");
-////				String oauth2Url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid="+wxSetting.getAppid()+"&redirect_uri="+wxSetting.getLink()+"/page/userInsert.html?url="
+////				String oauth2Url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid="+wxSetting.getAppid()+"&redirect_uri="+wxSetting.getLink()+"/page/userInsert?url="
 ////						+ url
 ////						+ "&response_type=code&scope=snsapi_userinfo&state=STATE&connect_redirect=1#wechat_redirect";
 //				String finalRedirecturl = url.indexOf("www.")>=0?
 //							url:url.replace("http://","http://www.");
 //				System.out.println("微信后跳转的url=="+ finalRedirecturl);
-//				String oauth2Url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid="+wxSetting.getAppid()+"&redirect_uri="+wxSetting.getLink()+"/page/userInsert.html?url="
+//				String oauth2Url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid="+wxSetting.getAppid()+"&redirect_uri="+wxSetting.getLink()+"/page/userInsert?url="
 //						//url加上www.
 //						+ finalRedirecturl.replace("?null","")
 //						+ "&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect";

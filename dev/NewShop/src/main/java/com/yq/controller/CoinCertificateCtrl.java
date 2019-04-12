@@ -25,7 +25,7 @@ public class CoinCertificateCtrl extends StringUtil {
     @Autowired
     private CategoryService categoryService;
 
-    @RequestMapping(value = "/main/coinCertificateList.html")
+    @RequestMapping(value = "/main/coinCertificateList")
     public ModelAndView list(
             @RequestParam(defaultValue = "1") Integer currentPage,
             HttpServletRequest request) {
@@ -36,7 +36,7 @@ public class CoinCertificateCtrl extends StringUtil {
         return ml;
     }
 
-    @RequestMapping(value = "/main/coinCertificateAdd.html")
+    @RequestMapping(value = "/main/coinCertificateAdd")
     public ModelAndView addjsp() {
         ModelAndView ml = new ModelAndView();
         Goods goods = new Goods();
@@ -53,7 +53,7 @@ public class CoinCertificateCtrl extends StringUtil {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/main/goodsListByCtgid1.html")
+    @RequestMapping(value = "/main/goodsListByCtgid1")
     public  Map<String,Object>  listByCtgid(HttpServletRequest req) {
         Integer ctg_id=Integer.parseInt(req.getParameter("ctg_id").toString());
         Map<String,Object> map = new HashMap<>();

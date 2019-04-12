@@ -63,7 +63,7 @@
 	function add(){
 		var area_name = $('#area_name').val();
 		$.ajax({
-			url:'areaInsert.html',
+			url:'areaInsert',
 			type:'post',
 			data:'area_name='+encodeURI(area_name)+'&level=0',
 			success:function(rs){

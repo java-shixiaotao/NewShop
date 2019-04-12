@@ -38,7 +38,7 @@
 	
 	<div class="pd-20">
 		<div class="cl pd-5 bg-1 bk-gray mt-20">
-			<span class="l"> <a href="addButton.html"
+			<span class="l"> <a href="addButton"
 				class="btn btn-primary radius"> <i class="Hui-iconfont">&#xe600;</i>
 					添加记录
 			</a></span>
@@ -75,7 +75,7 @@
 							<td>${list.value}</td>
 							<td><b>一级菜单</b></td>
 							<td>
-							<a href="buttonById.html?id=${list.id}">编辑</a>&nbsp;&nbsp;
+							<a href="buttonById?id=${list.id}">编辑</a>&nbsp;&nbsp;
 							<a href="javascript:;" onclick="del('${list.level}','${list.id}')">删除</a></td>					
 						</tr>
 						<c:set value="btn${s.index}" var="btn"></c:set>
@@ -89,7 +89,7 @@
 							<td>${btnList.value}</td>
 							<td>二级菜单</td>
 							<td>
-							<a href="buttonById.html?id=${btnList.id}">编辑</a>&nbsp;&nbsp;
+							<a href="buttonById?id=${btnList.id}">编辑</a>&nbsp;&nbsp;
 							<a href="javascript:;" onclick="del('${btnList.level}','${btnList.id}')">删除</a></td>					
 						</tr>
 						</c:forEach>
@@ -103,7 +103,7 @@
 	<script type="text/javascript">
 	function cMenu(){
 		$.ajax({
-			url:'cMenu.html',
+			url:'cMenu',
 			type:'post',
 			success:function(rs){
 				var data = eval(rs);
@@ -121,7 +121,7 @@
 		return ;
 		}
 		$.ajax({
-			url:'buttonDelete.html',
+			url:'buttonDelete',
 			type:'post',
 			data:'level='+level+'&id='+id,
 			success:function(rs){
@@ -138,7 +138,7 @@
 	function sort(id,sort){
 		var str = $('#'+sort).val();
 		$.ajax({
-			url:'buttonSort.html',
+			url:'buttonSort',
 			type:'post',
 			data:'sort='+str+'&id='+id,
 			success:function(rs){
@@ -153,7 +153,7 @@
 	function sort2(id,sort){
 		var str = $('#'+sort).val();
 		$.ajax({
-			url:'buttonSort.html',
+			url:'buttonSort',
 			type:'post',
 			data:'sort='+str+'&id='+id,
 			success:function(rs){

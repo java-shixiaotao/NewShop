@@ -76,7 +76,7 @@
 		var fgt_price = $('#fgt_price').val();
 		var free_price = $('#free_price').val();
 		$.ajax({
-			url:'fgtUpdate.html',
+			url:'fgtUpdate',
 			type:'post',
 			data:'fgt_price='+fgt_price+'&free_price='+free_price+'&fgt_id='+fgt_id,
 			success:function(rs){

@@ -38,7 +38,7 @@
 	<br>
 	<div class="pd-20">
 		<div class="cl pd-5 bg-1 bk-gray mt-20">
-			<span class="l"> <a href="ctgAddjsp.html"
+			<span class="l"> <a href="ctgAddjsp"
 				class="btn btn-primary radius"> <i class="Hui-iconfont">&#xe600;</i>
 					添加记录
 			</a></span>
@@ -66,7 +66,7 @@
 							<td>${list.fgt_price}</td>
 							<td>${list.free_price}</td>
 							<td>
-							<a href="fgtListById.html?fgt_id=${list.fgt_id}">编辑</a>
+							<a href="fgtListById?fgt_id=${list.fgt_id}">编辑</a>
 							</td>					
 						</tr>
 					</c:forEach>
@@ -82,7 +82,7 @@
 		return ;
 		}
 		$.ajax({
-			url:'ctgUpstatus.html',
+			url:'ctgUpstatus',
 			type:'post',
 			data:'ctg_id='+ctg_id+'&status=0',
 			success:function(rs){
@@ -98,7 +98,7 @@
 	function sort(id,sort){
 		var str = $('#'+sort).val();
 		$.ajax({
-			url:'ctgSort.html',
+			url:'ctgSort',
 			type:'post',
 			data:'sort='+str+'&ctg_id='+id,
 			success:function(rs){

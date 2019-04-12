@@ -18,13 +18,13 @@ public class BannerCtrl {
 	@Autowired
 	private BannerService bannerService;
 
-	@RequestMapping(value = "/main/banAddjsp.html")
+	@RequestMapping(value = "/main/banAddjsp")
 	public ModelAndView addjsp() {
 		return new ModelAndView("main/banner/add");
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/main/banInsert.html")
+	@RequestMapping(value = "/main/banInsert")
 	public String insert(String ban_img,String url,Integer status,
 			Integer sort,Integer type) {
 			Map<String, Object> map = new HashMap<String, Object>();
@@ -36,7 +36,7 @@ public class BannerCtrl {
 			return bannerService.insert(map)+"";
 	}
 	@ResponseBody
-	@RequestMapping(value = "/main/banUpdate.html")
+	@RequestMapping(value = "/main/banUpdate")
 	public Object update(Integer ban_id,String ban_img,String url) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("url", url);
@@ -46,7 +46,7 @@ public class BannerCtrl {
 		
 	}
 	@ResponseBody
-	@RequestMapping(value = "/main/banUpstatus.html")
+	@RequestMapping(value = "/main/banUpstatus")
 	public Object upstatus(Integer ban_id,Integer status) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("status", status);
@@ -55,7 +55,7 @@ public class BannerCtrl {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/main/banSort.html")
+	@RequestMapping(value = "/main/banSort")
 	public Object sort(Integer ban_id,Integer sort) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("sort", sort);
@@ -63,7 +63,7 @@ public class BannerCtrl {
 		return bannerService.sort(map)+"";
 	}
 	
-	@RequestMapping(value = "/main/banList.html")
+	@RequestMapping(value = "/main/banList")
 	public ModelAndView list(Integer status) {
 		Banner banner= new Banner();
 		banner.setStatus(status);
@@ -73,7 +73,7 @@ public class BannerCtrl {
 		ml.setViewName("main/banner/list");
 		return ml;
 	}
-	@RequestMapping(value = "/main/banListById.html")
+	@RequestMapping(value = "/main/banListById")
 	public ModelAndView listById(Integer ban_id) {
 		Banner banner= new Banner();
 		banner.setBan_id(ban_id);

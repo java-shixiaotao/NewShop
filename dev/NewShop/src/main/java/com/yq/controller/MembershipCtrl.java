@@ -32,7 +32,7 @@ public class MembershipCtrl extends StringUtil {
     private AddressService addressService;
 
     //“我的”页面 点击会员中心
-    @RequestMapping(value="/page/membershipindex.html")
+    @RequestMapping(value="/page/membershipindex")
     public ModelAndView membershipindex(@RequestParam(defaultValue = "0") Integer addr_id, HttpSession session){
         boolean ifMembershipFlag = false;
         //微信用户标识id
@@ -93,7 +93,7 @@ public class MembershipCtrl extends StringUtil {
 
     //会员保存
     @ResponseBody
-    @RequestMapping(value = "/page/membershipInsert.html")
+    @RequestMapping(value = "/page/membershipInsert")
     public String insert(String addr_phone , String addr_email ,
                          String addr_username , String addr_idcardno,
                          String birthday,
@@ -135,7 +135,7 @@ public class MembershipCtrl extends StringUtil {
     }
 
     //会员中心点击头像修改信息
-    @RequestMapping(value="/page/modifyMembership.html")
+    @RequestMapping(value="/page/modifyMembership")
     public ModelAndView modifyMembership(@RequestParam(defaultValue = "0") Integer addr_id, HttpSession session){
         //微信用户标识id
         String	oppen_id=getOppen_id(session);
@@ -163,7 +163,7 @@ public class MembershipCtrl extends StringUtil {
 
     //会员更新
     @ResponseBody
-    @RequestMapping(value = "/page/membershipModify.html")
+    @RequestMapping(value = "/page/membershipModify")
     public String modify(String addr_phone , String addr_email ,
                          String addr_username ,String addr_idcardno,
                          String birthday,
@@ -199,7 +199,7 @@ public class MembershipCtrl extends StringUtil {
     }
     //会员更新
     @ResponseBody
-    @RequestMapping(value = "/page/membershipModifyCheckReferee.html")
+    @RequestMapping(value = "/page/membershipModifyCheckReferee")
     public String membershipModifyCheckReferee(
                          Long referee,
                          HttpSession session) {

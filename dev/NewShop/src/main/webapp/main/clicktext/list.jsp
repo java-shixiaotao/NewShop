@@ -38,7 +38,7 @@
 	<br>
 	<div class="pd-20">
 		<div class="cl pd-5 bg-1 bk-gray mt-20">
-			<span class="l"> <a href="reply_add.html"
+			<span class="l"> <a href="reply_add"
 				class="btn btn-primary radius"> <i class="Hui-iconfont">&#xe600;</i>
 					添加记录
 			</a></span>
@@ -65,7 +65,7 @@
 							<td>${s.count}</td>
 							<td>${list.ct_key}</td>
 							<td>
-							<a href="reply_byId.html?ct_key=${list.ct_key}">编辑</a>&nbsp;&nbsp;
+							<a href="reply_byId?ct_key=${list.ct_key}">编辑</a>&nbsp;&nbsp;
 							<a href="javascript:;" onclick="del('${list.ct_key}')">删除</a></td>					
 						</tr>
 					<%-- </c:if>	 --%>
@@ -82,7 +82,7 @@
 		return ;
 		}
 		$.ajax({
-			url:'reply_delete.html',
+			url:'reply_delete',
 			type:'post',
 			data:'ct_key='+ct_key,
 			success:function(rs){
@@ -99,7 +99,7 @@
 	function sort(id,sort){
 		var str = $('#'+sort).val();
 		$.ajax({
-			url:'banSort.html',
+			url:'banSort',
 			type:'post',
 			data:'sort='+str+'&ban_id='+id,
 			success:function(rs){

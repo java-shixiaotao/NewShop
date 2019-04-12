@@ -34,7 +34,14 @@ public class ReplyController {
     @Autowired
     private ClickTextService clickTextService;
 
-    @RequestMapping(value = "reply.html")
+    /**
+     * 关注回复
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
+    @RequestMapping(value = "reply")
     public void repaly(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             response.setContentType("text/html;charset=UTF-8");

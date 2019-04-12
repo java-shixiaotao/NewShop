@@ -308,7 +308,7 @@
         var fl_id = $('#fl_id').val();
         $('#goods_price').val("");
         $.ajax({
-            url: 'goodsListByCtgid.html',
+            url: 'goodsListByCtgid',
             type: 'post',
             dataType: "json",
             data: {'ctg_id': fl_id},
@@ -376,7 +376,7 @@
             }
 
             $.ajax({
-                url: 'templateInsert.html',
+                url: 'templateInsert',
                 type: 'post',
                 data: 'templateName=' + encodeURI(templateName) + '&goods_id='
                 + goods_id + '&goods_name=' + goods_name + '&goods_img=' + goods_img

@@ -85,7 +85,7 @@ public class OrderCtrl extends StringUtil {
      * @throws UnsupportedEncodingException
      */
     @ResponseBody
-    @RequestMapping(value = "/page/orderInsert.html")
+    @RequestMapping(value = "/page/orderInsert")
     public Map insert(String goods_id, String goods_name, String goods_img,
                          String goods_spe, int spe_type, String goods_price,
                          String goods_num, double goods_total,
@@ -155,7 +155,7 @@ public class OrderCtrl extends StringUtil {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/page/orderUpdate.html")
+    @RequestMapping(value = "/page/orderUpdate")
     public Object update(String order_id, @RequestParam(defaultValue = "1") Integer status, HttpSession session) {
         Map<String, Object> map = new HashMap<>();
         // setOppen_id("111", session);//测试代码，模仿登录
@@ -166,7 +166,7 @@ public class OrderCtrl extends StringUtil {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/main/orderprice.html")
+    @RequestMapping(value = "/main/orderprice")
     public Object orderprice(String order_id, String goods_total, HttpSession session) {
         Map<String, Object> map = new HashMap<>();
         SimpleDateFormat sf = new SimpleDateFormat("yyyyMMddHHmmssSSS");
@@ -182,7 +182,7 @@ public class OrderCtrl extends StringUtil {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/main/orderUpstatus.html")
+    @RequestMapping(value = "/main/orderUpstatus")
     public Object upstatus(Integer status, String order_id, String express_dm, String express_hm, String express_name) throws UnsupportedEncodingException {
         if (StringUtils.isNotEmpty(express_name)) {
             express_name = java.net.URLDecoder.decode(express_name, "utf-8");
@@ -230,7 +230,7 @@ public class OrderCtrl extends StringUtil {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/main/orderDel.html")
+    @RequestMapping(value = "/main/orderDel")
     public Object delete(String order_id) {
         Map<String, Object> map = new HashMap<>();
         map.put("order_id", order_id);
@@ -244,7 +244,7 @@ public class OrderCtrl extends StringUtil {
      * @param session
      * @return
      */
-    @RequestMapping(value = "/page/orderList.html")
+    @RequestMapping(value = "/page/orderList")
     public ModelAndView list(@RequestParam(defaultValue = "-2") Integer status, String oppen_id, HttpSession session) {
         // setOppen_id("111", session);// 测试代码，模仿登录
         Map<String, Object> map = new HashMap<>();
@@ -271,7 +271,7 @@ public class OrderCtrl extends StringUtil {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/main/order.html")
+    @RequestMapping(value = "/main/order")
     public void orderListJs(@RequestParam(value = "c", defaultValue = "1") Integer currentPage,
                             @RequestParam(value = "p", defaultValue = "0") Integer pageSize, HttpServletRequest request,
                             HttpServletResponse response) throws IOException {
@@ -325,7 +325,7 @@ public class OrderCtrl extends StringUtil {
      * @return
      * @throws UnsupportedEncodingException
      */
-    @RequestMapping(value = "/main/orderList.html")
+    @RequestMapping(value = "/main/orderList")
     public ModelAndView orderList(@RequestParam(defaultValue = "1") Integer currentPage,
                                   @RequestParam(defaultValue = "-2") Integer status, @RequestParam(defaultValue = "") String start_time,
                                   @RequestParam(defaultValue = "") String end_time, @RequestParam(defaultValue = "") String ctg_name,
@@ -392,7 +392,7 @@ public class OrderCtrl extends StringUtil {
      * @param session
      * @return
      */
-    @RequestMapping(value = "/page/payOrder.html")
+    @RequestMapping(value = "/page/payOrder")
     public ModelAndView payOrder(String order_id, HttpServletRequest request, HttpServletResponse response,
                                  HttpSession session) {
         Order order = orderService.selectOrderByOrderID(order_id);
@@ -408,7 +408,7 @@ public class OrderCtrl extends StringUtil {
     /**
      * 付款后微信返回信息，更改订单状态
      */
-    @RequestMapping(value = "/page/noticeOrder.html")
+    @RequestMapping(value = "/page/noticeOrder")
     public void noticeOrder(HttpServletRequest request) {
 //		Map<String, Object> map = new HashMap<>();
 //		String xmlStr = NotifyServlet.getWxXml(request);
@@ -432,7 +432,7 @@ public class OrderCtrl extends StringUtil {
 
 //			}
 //		}
-        // return new ModelAndView("orderList.html");
+        // return new ModelAndView("orderList");
     }
 
     /**
@@ -442,7 +442,7 @@ public class OrderCtrl extends StringUtil {
      * @param session
      * @return
      */
-    @RequestMapping(value = "/page/cartOrderList.html")
+    @RequestMapping(value = "/page/cartOrderList")
     public ModelAndView cartList(@RequestParam(defaultValue = "0") Integer cps_id,
                                  @RequestParam(defaultValue = "0") Integer addr_id, String cps_name,
                                  @RequestParam(defaultValue = "0") Float cps_price, String oppen_id, HttpSession session) {
@@ -550,7 +550,7 @@ public class OrderCtrl extends StringUtil {
      *
      * @return
      */
-    @RequestMapping(value = "/page/goodsOrderSure.html")
+    @RequestMapping(value = "/page/goodsOrderSure")
     public ModelAndView goodsOrder(@RequestParam(defaultValue = "0") Integer addr_id, Integer goods_id, String member_code, HttpSession session) {
         ModelAndView ml = new ModelAndView();
 
@@ -581,7 +581,7 @@ public class OrderCtrl extends StringUtil {
         return ml;
     }
 
-    @RequestMapping(value = "/page/order.html")
+    @RequestMapping(value = "/page/order")
     public ModelAndView goodsOrder(String order_id) {
         ModelAndView ml = new ModelAndView();
         Order order = new Order();
@@ -598,7 +598,7 @@ public class OrderCtrl extends StringUtil {
      * @throws UnsupportedEncodingException
      */
     @ResponseBody
-    @RequestMapping(value = "/page/updateOrderStatusAndGiftAndInventory.html")
+    @RequestMapping(value = "/page/updateOrderStatusAndGiftAndInventory")
     public Map<String, String> updateOrderStatusAndGift(String order_id) throws UnsupportedEncodingException {
         Map<String, String> result = new HashMap<>();
         final Order order = orderService.selectOrderByOrderID(order_id);

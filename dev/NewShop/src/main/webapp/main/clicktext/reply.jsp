@@ -88,7 +88,7 @@
 		var content=$('#content').val();
 		
 		$.ajax({
-			url:'reply_update.html',
+			url:'reply_update',
 			type:'post',
 			data:'ct_key='+ct_key+'&content='+encodeURIComponent(content),
 			success:function(rs){

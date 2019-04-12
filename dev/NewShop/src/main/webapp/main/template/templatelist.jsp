@@ -51,13 +51,13 @@
 			<script type="text/javascript">
 				function search() {
 					var template_name =$('#template_name').val();
-					window.location.href = 'templateList.html?templateName=' + encodeURIComponent(encodeURIComponent(template_name));
+					window.location.href = 'templateList?templateName=' + encodeURIComponent(encodeURIComponent(template_name));
 				}
 			</script>
 		</div>
 	<div class="pd-20">
 		<div class="cl pd-5 bg-1 bk-gray mt-20">
-			<span class="l"> <a href="templateAdd.html"
+			<span class="l"> <a href="templateAdd"
 				class="btn btn-primary radius"> <i class="Hui-iconfont">&#xe600;</i>
 					添加记录
 			</a></span>
@@ -86,8 +86,8 @@
 							<td>${list.goods_total}</td>
 							<td>${list.createTime}</td>
 							<td>
-							<a href="templateListById.html?template_id=${list.template_id}">详情</a>&nbsp;&nbsp;
-							<%--<a href="goodsListById.html?goods_id=${list.template_id}">编辑</a>&nbsp;&nbsp;--%>
+							<a href="templateListById?template_id=${list.template_id}">详情</a>&nbsp;&nbsp;
+							<%--<a href="goodsListById?goods_id=${list.template_id}">编辑</a>&nbsp;&nbsp;--%>
 							<%--&nbsp;&nbsp;--%>
 							<%--<a href="javascript:;" onclick="del('${list.template_id}')">删除</a>--%>
 							</td>					
@@ -133,7 +133,7 @@
 		return ;
 		}
 		$.ajax({
-			url:'templateUpstatus.html',
+			url:'templateUpstatus',
 			type:'post',
 			data:'template_id='+template_id,
 			success:function(rs){
@@ -158,7 +158,7 @@
 		return ;
 		}
 		$.ajax({
-			url:'goodsUpisrec.html',
+			url:'goodsUpisrec',
 			type:'post',
 			data:'goods_id='+goods_id+'&is_recommend='+is_recommend,
 			success:function(rs){
@@ -176,30 +176,30 @@
 	var totalPage = '${totalPage}';
 	function upPage() {
 		if (currentPage > 1) {
-			window.location.href = 'goodsList.html?currentPage='
+			window.location.href = 'goodsList?currentPage='
 					+ (parseInt(currentPage) - 1)+'&status=1&goods_name=' + encodeURIComponent(encodeURIComponent(goods_name));
 			return;
 		}
 	}
 	function downPage() {
 		if (parseInt(currentPage) < parseInt(totalPage)) {
-			window.location.href = 'goodsList.html?currentPage='
+			window.location.href = 'goodsList?currentPage='
 					+ (parseInt(currentPage) + 1)+'&status=1&goods_name=' + encodeURIComponent(encodeURIComponent(goods_name));
 			return;
 		}
 	}
 	function fpage() {
-		window.location.href = 'goodsList.html?currentPage=1'+'&status=1&goods_name=' + encodeURIComponent(encodeURIComponent(goods_name));
+		window.location.href = 'goodsList?currentPage=1'+'&status=1&goods_name=' + encodeURIComponent(encodeURIComponent(goods_name));
 		return;
 	}
 	function epage() {
-		window.location.href = 'goodsList.html?currentPage=' + totalPage+'&status=1&goods_name=' + encodeURIComponent(encodeURIComponent(goods_name));
+		window.location.href = 'goodsList?currentPage=' + totalPage+'&status=1&goods_name=' + encodeURIComponent(encodeURIComponent(goods_name));
 		return;
 	}
 	function spage() {
 		var seastr =$('#seastr').val();
 		if (parseInt(seastr)< parseInt(totalPage)||parseInt(seastr)== parseInt(totalPage)) {
-		window.location.href = 'goodsList.html?currentPage=' + seastr+'&status=1&goods_name=' + encodeURIComponent(encodeURIComponent(goods_name));
+		window.location.href = 'goodsList?currentPage=' + seastr+'&status=1&goods_name=' + encodeURIComponent(encodeURIComponent(goods_name));
 		}
 		return;
 	}

@@ -30,7 +30,7 @@ public class ScanCodeConversionCtrl {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "/page/jsSignIn.html",method = RequestMethod.POST)
+    @RequestMapping(value = "/page/jsSignIn",method = RequestMethod.POST)
     public String jsSignIn(String url) {
         Gson retJson =  new Gson();
         Map<String, String> signMap = JsSignUtil.sign(url);
@@ -43,7 +43,7 @@ public class ScanCodeConversionCtrl {
      * @param session
      * @return
      */
-    @RequestMapping(value = "/page/scanCode.html")
+    @RequestMapping(value = "/page/scanCode")
     public ModelAndView toScanCodeHtml(HttpServletRequest request, HttpSession session) {
         String url = request.getRequestURI() ;
         Map<String, String> signMap = JsSignUtil.sign(url);
@@ -59,7 +59,7 @@ public class ScanCodeConversionCtrl {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "/page/checkScanCode.html",method = RequestMethod.POST)
+    @RequestMapping(value = "/page/checkScanCode",method = RequestMethod.POST)
     public String checkScanCode(String scancode) {
         Gson retJson =  new Gson();
         Map<String,String> retMap = new HashMap<String,String>();
@@ -91,7 +91,7 @@ public class ScanCodeConversionCtrl {
      * @param session
      * @return
      */
-//    @RequestMapping(value = "/page/afterScanCode.html")
+//    @RequestMapping(value = "/page/afterScanCode")
 //    public ModelAndView afterScanHtml(String cpsCode,HttpServletRequest request, HttpSession session){
 //        //根据传来的优惠码，查询优惠码视图，
 //        System.out.println("兑换页面");

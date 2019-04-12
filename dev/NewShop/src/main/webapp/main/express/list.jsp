@@ -38,7 +38,7 @@
 	<br>
 	<div class="pd-20">
 		<div class="cl pd-5 bg-1 bk-gray mt-20">
-			<span class="l"> <a href="exp_add.html"
+			<span class="l"> <a href="exp_add"
 				class="btn btn-primary radius"> <i class="Hui-iconfont">&#xe600;</i>
 					添加记录
 			</a></span>
@@ -66,7 +66,7 @@
 							<td>${list.express_dm}</td>
 							<td>${list.express_name}</td>
 							<td>
-							<a href="express.html?express_id=${list.express_id}">编辑</a>&nbsp;&nbsp;&nbsp;
+							<a href="express?express_id=${list.express_id}">编辑</a>&nbsp;&nbsp;&nbsp;
 							<a href="#" onclick="del('${list.express_id}')">删除</a>
 							</td>					
 						</tr>
@@ -83,7 +83,7 @@
 		return ;
 		}
 		$.ajax({
-			url:'exp_delete.html',
+			url:'exp_delete',
 			type:'post',
 			data:'express_id='+express_id,
 			success:function(rs){
@@ -99,7 +99,7 @@
 	function sort(id,sort){
 		var str = $('#'+sort).val();
 		$.ajax({
-			url:'ctgSort.html',
+			url:'ctgSort',
 			type:'post',
 			data:'sort='+str+'&ctg_id='+id,
 			success:function(rs){
